@@ -1,7 +1,6 @@
 # Dotfiles
 
-First do following in this repository:
-HomeBrew:
+First install following libraries from HomeBrew:
 - git
 - git-secrets
 - neovim
