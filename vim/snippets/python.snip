@@ -1,0 +1,36 @@
+snippet plt
+options head
+  import matplotlib
+  matplotlib.use('Agg')  # NOQA
+  import matplotlib.pyplot as plt
+
+
+snippet plt_subplots
+options head
+	fig, ax = plt.subplots(figsize=(16, 9))
+	${0}
+	fig.tight_layout()
+	fig.savefig('main.pdf')
+
+
+snippet main
+options head
+  def main():
+    ${0}
+
+
+  if __name__ == '__main__':
+    main()
+
+snippet args
+options word
+  parser = argparse.ArgumentParser()
+	${0}
+	args = parser.parse_args()
+
+
+snippet sh
+options head
+  cmd = ['ls', '-al']
+	out = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+	out = out.stdout.decode('utf-8')

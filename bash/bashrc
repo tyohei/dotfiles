@@ -1,0 +1,181 @@
+# ============ dotfiles HOME ============ 
+DOTFILES_HOME="${HOME}/dotfiles"
+
+
+# ============ External files ============
+# Aliases file
+ALIASES_FILE="${DOTFILES_HOME}/aliases"
+# Dircolors file
+DIRCOLORS_FILE="${DOTFILES_HOME}/downloads/dircolors.ansi-dark"
+# Git prompt file
+GITPROMPT_FILE="${DOTFILES_HOME}/downloads/git-prompt.sh"
+# Git completion file
+GITCOMPLETION_FILE="${DOTFILES_HOME}/downloads/git-completion.bash"
+# Bash preexec file
+PREXEC_FILE="${DOTFILES_HOME}/downloads/bash-preexec.sh"
+
+# Disable locking the terminal when inputing <Ctrl>+<s>.
+stty stop undef
+
+
+# ============ Set Envvars ============
+export PATH="$PATH:$HOME/.local/bin"
+export WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
+export EDITOR="vim"
+
+
+# ============ Set directory colors ============
+# Set directory colors.
+# Need `gdircolors` in macOS, install it from Homebrew.
+# Load dircolors
+if [[ -e ${DIRCOLORS_FILE} ]]; then
+  if [[ $(uname) = "Darwin" ]]; then
+    if hash gdircolors 2> /dev/null; then
+      eval $(gdircolors ${DIRCOLORS_FILE})
+    else
+      echo "dotfiles: command not found: gdircolors"
+      echo "Install \`coreutils' using Homebrew"
+      echo ""
+      echo "    $ brew install coreutils"
+      echo ""
+    fi
+  elif [[ $(uname) = "Linux" ]]; then
+    eval $(dircolors ${DIRCOLORS_FILE})
+  fi
+fi
+
+
+# ============ Set Locale ============
+if locale -a | grep en_US.UTF-8 > /dev/null; then
+  export LC_ALL=en_US.UTF-8
+  export LANG=en_US.UTF-8
+fi
+
+
+# ============ Set aliases ============
+if [[ -e ${ALIASES_FILE} ]]; then
+  source ${ALIASES_FILE}
+fi
+
+
+# ============ History file ============
+export HISTSIZE=100000
+export SAVEHIST=100000
+export HISTCONTROL=ignoredups
+
+
+# ============ Completions ============
+# ==== Completions in Homebrew ====
+if [[ $(uname) = "Darwin" ]]; then
+  if hash brew 2>/dev/null; then
+    if [[ -r "$(brew --prefix)/etc/profile.d/bash_completion.sh" ]]; then
+      source "$(brew --prefix)/etc/profile.d/bash_completion.sh"
+    fi
+  fi
+fi
+
+# ==== Completions in cd ====
+# Complete only directories in `cd` command
+complete -d cd
+
+# ==== Completions in sh ====
+# Complete `*.sh` after sh command
+complete -f -X '!*.sh' sh
+
+# ==== Completions in AWS CDK command ====
+# https://gist.github.com/kirtfitzpatrick/e7a7828e99bae609955f08b35fc2c8b1
+_cdk_completer() {
+  STACK_CMDS="list synthesize bootstrap deploy destroy diff metadata init context docs doctor"
+  if [[ "$3" == "cdk" ]]; then
+    COMPREPLY=($(compgen -W "$STACK_CMDS" $2))
+  elif [[ -d "cdk.out" ]] && ! [[ "$2" == "-"* ]]; then
+    TEMPLATES=$(ls -1 cdk.out/*.template.json | awk '{split($0,t,/\/|\./); print t[3]}')
+    COMPREPLY=($(compgen -W "$TEMPLATES" $2))
+  else
+    COMPREPLY=()
+  fi
+}
+complete -F _cdk_completer cdk
+
+# ============ Git ============
+# ==== Completion ====
+if [[ -e ${GITCOMPLETION_FILE} ]]; then
+  source ${GITCOMPLETION_FILE}
+fi
+
+# ==== Prompt ====
+# https://github.com/git/git/blob/master/contrib/completion/git-prompt.sh
+if [[ -e ${GITPROMPT_FILE} ]]; then
+  . ${GITPROMPT_FILE}
+  export GIT_PS1_SHOWDIRTYSTATE=1
+  export GTI_PS1_SHOWSTASHSTATE=1
+  export GIT_PS1_SHOWUNTRACKEDFILES=1
+  export GIT_PS1_SHOWUPSTREAM="auto"
+  export GIT_PS1_SHOWCOLORHINTS=1
+  export GIT_PS1_HIDE_IF_PWD_IGNORED=1
+fi
+
+
+# ============ Docker ============
+# https://docs.docker.com/compose/completion/
+if [[ $(uname) = "Darwin" ]]; then
+  if hash docker 2>/dev/null; then
+    source /Applications/Docker.app/Contents/Resources/etc/docker-compose.bash-completion
+    source /Applications/Docker.app/Contents/Resources/etc/docker.bash-completion
+  fi
+fi
+
+
+# ============ Go ============
+export GOPATH="$HOME/go"
+export PATH="$GOPATH/bin:$PATH"
+
+
+# ============ pyenv ============
+# Need `pyenv`, install it from Homebrew or github.
+# Set `PYENV_ROOT` environment variable
+export PYENV_ROOT="${PYENV_ROOT:-${HOME}/.pyenv}"
+# Add pyenv binary path to `PATH`
+export PATH="${PYENV_ROOT}/bin:${PATH}"
+# Enable shims and autocompletion
+if hash pyenv 2>/dev/null; then
+  eval "$(pyenv init --path)"
+fi
+
+
+# ============ jenv ============
+# Need `jenv`, install it from Homebrew or github.
+# Set `JENV_HOME` environment variable
+export JENV_ROOT="${JENV_ROOT:-${HOME}/.jenv}"
+# Add jenv binary path to `PATH`
+export PATH="${JENV_ROOT}/bin:${PATH}"
+# Enable shims and autocompletion
+if hash jenv 2>/dev/null; then
+  eval "$(jenv init -)"
+fi
+
+
+# ============ Bat ============
+if hash bat 2>/dev/null; then
+  if [[ -n "${ITERM_PROFILE}" ]]; then
+    if [[ ${ITERM_PROFILE} == "Solarized Dark" ]]; then
+      export BAT_THEME="Solarized (dark)"
+    elif [[ ${ITERM_PROFILE} == "Solarized Light" ]]; then
+      export BAT_THEME="Solarized (light)"
+    fi
+  fi
+fi
+
+
+# ============ AWS CLI ============
+if hash aws_completer 2>/dev/null; then
+  _FILENAME="$(which aws_completer)"
+  complete -C "${_FILENAME}" aws
+fi
+
+
+# ============ Prompt ============
+if [[ -e "${PREXEC_FILE}" ]]; then
+  source "${PREXEC_FILE}"
+fi
+export PS1='[ \t | \u @ \H : \[\e[0;33m\]\w\[\e[0;m\] ]\n$(__git_ps1 "(%s)")\$ '

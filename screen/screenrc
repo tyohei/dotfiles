@@ -1,0 +1,21 @@
+# Set alternate screen
+altscreen on
+
+# Treat ambigous width characters full width.
+cjkwidth on
+
+# Set the size of scrollback buffer. 
+defscrollback 100000
+
+# Change the encode to UTF8.
+defutf8 on
+
+# Do not show the startup message.
+startup_message off
+
+# Turn off the visual bell.
+vbell off
+
+
+hardstatus off
+hardstatus alwayslastline "%{= 03}[%= %{=b 03}SCREEN %=%{= 03}]"

@@ -1,0 +1,27 @@
+snippet getopts
+options head
+	OPTIND=1  # Reset in case getopts has been used previously in the shell.
+	while getopts h${1:x:} OPT; do
+		case ${OPT} in
+			${2:x})
+				${3:VALUE_X=\$\{OPTARG\}}
+				;;
+			:)
+				echo "error: option argument is undefined"
+				;;
+			h|\?)
+				echo "help"
+				exit 0
+				;;
+		esac
+	done
+	${0}
+
+
+snippet prefix
+options head
+	PREFIX=$(base64 < /dev/urandom | tr -dc '[:lower:]' | fold -w 8 | head -n 1)
+
+snippet my_ip_address
+options head
+	MY_IP_ADDRESS="$(dig TXT +short o-o.myaddr.l.google.com @ns1.google.com | tr -d '"')/32"

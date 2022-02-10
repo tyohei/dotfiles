@@ -1,0 +1,159 @@
+[[plugins]]
+repo = 'Shougo/dein.vim'
+
+
+[[plugins]]
+repo = 'Shougo/denite.nvim'
+
+
+[[plugins]]
+repo = 'Shougo/defx.nvim'
+hook_add = '''
+autocmd FileType defx call s:defx_my_settings()
+function! s:defx_my_settings() abort
+  " Define mappings
+  nnoremap <silent><buffer><expr> <CR>
+    \ defx#is_directory() ?
+    \ defx#do_action('open_directory') :
+    \ defx#do_action('drop')
+  nnoremap <silent><buffer><expr> a
+  \ defx#do_action('new_file')
+  nnoremap <silent><buffer><expr> A
+  \ defx#do_action('new_directory')
+  nnoremap <silent><buffer><expr> <Space>
+  \ defx#do_action('rename')
+  nnoremap <silent><buffer><expr> S
+  \ defx#do_action('toggle_sort', 'time')
+  nnoremap <silent><buffer><expr> !
+  \ defx#do_action('execute_command')
+  nnoremap <silent><buffer><expr> x
+  \ defx#do_action('execute_system')
+  nnoremap <silent><buffer><expr> yy
+  \ defx#do_action('yank_path')
+  nnoremap <silent><buffer><expr> .
+  \ defx#do_action('toggle_ignored_files')
+  nnoremap <silent><buffer><expr> h
+  \ defx#do_action('cd', ['..'])
+  nnoremap <silent><buffer><expr> ~
+  \ defx#do_action('cd')
+  nnoremap <silent><buffer><expr> *
+  \ defx#do_action('toggle_select_all')
+  nnoremap <silent><buffer><expr> j
+  \ line('.') == line('$') ? 'gg' : 'j'
+  nnoremap <silent><buffer><expr> k
+  \ line('.') == 1 ? 'G' : 'k'
+  nnoremap <silent><buffer><expr> <C-g>
+  \ defx#do_action('print')
+  nnoremap <silent><buffer><expr> cd
+  \ defx#do_action('change_vim_cwd')
+endfunction
+
+let g:defx_buf = -1
+function! ToggleDefx()
+  if g:defx_buf < 0
+    " 1. Defx is not launched
+    exec "Defx -auto-cd -direction=topleft -split=vertical -toggle -winwidth=32"
+    let g:defx_buf = bufnr('')
+  elseif g:defx_buf == bufnr('')
+    " 2. Defx is opened and focused
+    exec "Defx -auto-cd -direction=topleft -split=vertical -toggle -winwidth=32"
+  else
+    let l:defx_win = bufwinid(g:defx_buf)
+    if l:defx_win < 0
+      " 3. Defx is closed
+      exec "Defx -auto-cd -direction=topleft -split=vertical -toggle -winwidth=32"
+    else
+      " 4. Defx is opened but not focused
+      call win_gotoid(l:defx_win)
+    endif
+  endif
+endfunction
+
+nnoremap <C-e> :call ToggleDefx()<CR>
+'''
+
+
+[[plugins]]
+repo = 'tpope/vim-surround'
+
+
+[[plugins]]
+repo = 'tpope/vim-fugitive'
+
+
+[[plugins]]
+repo = 'altercation/vim-colors-solarized'
+hook_add = '''
+colorscheme solarized
+let g:solarized_termtrans = 1
+let g:solarized_bold = 1
+let g:solarized_italic = 1
+
+if !exists('$ITERM_PROFILE') || $ITERM_PROFILE == 'Solarized Light'
+  set background=light
+else
+  set background=dark
+endif
+'''
+
+
+[[plugins]]
+repo = 'vim-airline/vim-airline'
+depends = ['vim-airline-themes']
+
+
+[[plugins]]
+repo = 'vim-airline/vim-airline-themes'
+hook_add = '''
+" Do not use powerline fonts
+let g:airline_powerline_fonts=0
+" Use <solarized> vim-airline theme
+let g:airline_theme='solarized'
+let s:saved_theme = []
+if !exists('$ITERM_PROFILE') || $ITERM_PROFILE == 'Solarized Dark'
+  let g:airline_solarized_bg='dark'
+endif
+
+" https://github.com/vim-airline/vim-airline-themes/issues/180
+let g:airline_theme_patch_func = 'AirlineThemePatch'
+function! AirlineThemePatch(palette)
+    for colors in values(a:palette)
+        if has_key(colors, 'airline_c') && len(s:saved_theme) ==# 0
+            let s:saved_theme = colors.airline_c
+        endif
+        if has_key(colors, 'airline_term')
+            let colors.airline_term = s:saved_theme
+        endif
+    endfor
+endfunction
+
+" Display all buffers when there's only one tab open
+let g:airline#extensions#tabline#enabled=1
+let g:airline#extensions#branch#enabled=1
+" Determines a pattern to ignore a buffer name for various things (e.g. the
+" tabline extension) or the read-only check.
+let g:airline#extensions#tabline#ignore_bufadd_pat = '!|defx|gundo|nerd_tree|startify|tagbar|undotree|vimfiler'
+'''
+
+
+[[plugins]]
+repo = 'dense-analysis/ale'
+hook_add = '''
+nnoremap <Leader>a :ALEToggle<CR>
+let g:ale_open_list = 0
+let g:ale_c_parse_makefile = 1
+let g:ale_linters = {
+  \ 'python': ['flake8'],
+  \}
+" Set this. Airline will handle the rest.
+let g:airline#extensions#ale#enabled = 1
+let g:ale_echo_msg_format = '[%linter%] %code: %%s'
+'''
+
+
+[[plugins]]
+repo = 'chrisbra/csv.vim'
+
+
+[[plugins]]
+repo = 'easymotion/vim-easymotion'

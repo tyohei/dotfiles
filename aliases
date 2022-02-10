@@ -1,0 +1,83 @@
+# vim: ft=sh
+if [[ $(uname) = "Darwin" ]]; then
+  if hash gls 2>/dev/null; then
+    alias ls="LC_ALL=en_US.UTF-8 gls --color=auto --group-directories-first -Fh"
+    alias la="LC_ALL=en_US.UTF-8 gls --color=auto --group-directories-first -aFh"
+    alias ll="LC_ALL=en_US.UTF-8 gls --color=auto --group-directories-first -aFhl"
+    alias l="LC_ALL=en_US.UTF-8 gls --color=auto --group-directories-first -Fh1"
+  else
+    echo "dotfiles: command not found: gls"
+    echo "Install \`coreutils' using Homebrew:"
+    echo ""
+    echo "    $ brew install coreutils"
+    echo ""
+    alias ls="LC_ALL=en_US.UTF-8 ls -FGh"
+    alias la="LC_ALL=en_US.UTF-8 ls -aFGh"
+    alias ll="LC_ALL=en_US.UTF-8 ls -aFGhl"
+    alias l="LC_ALL=en_US.UTF-8 ls -FGh1"
+  fi
+  alias pu="ps -U${USER}"
+  alias getcpu="sysctl -n machdep.cpu.brand_string"
+  alias iwconfig="/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport -I en0"
+  alias o="open"
+  alias factor="gfactor"
+  alias lsblk="diskutil list"
+elif [[ $(uname) = "Linux" ]]; then
+  alias ls="LC_ALL=en_US.UTF-8 ls --color=auto --group-directories-first -Fh"
+  alias la="LC_ALL=en_US.UTF-8 ls --color=auto --group-directories-first -aFh"
+  alias ll="LC_ALL=en_US.UTF-8 ls --color=auto --group-directories-first -aFhl"
+  alias l="LC_ALL=en_US.UTF-8 ls --color=auto --group-directories-first -Fh1"
+  alias pu="ps -u${USER} u"
+fi
+
+# Change Dir aliases
+alias cd..="cd .."
+alias ..="cd .."
+alias ....="cd ../.."
+alias ......="cd ../../.."
+
+# Prevent file deletion aliases
+alias cp="cp -i"
+alias mv="mv -i"
+alias rm="rm -i"
+
+# VIM aliases
+if hash nvim 2>/dev/null; then
+  alias vim="nvim"
+  alias vi="nvim"
+  alias vimdiff="nvim -d"
+  alias view="nvim -R"
+else
+  alias vi="vim"
+fi
+
+# Bat aliases
+if hash bat 2>/dev/null; then
+  alias ba="bat -p"
+fi
+
+alias grep="grep --color=auto"
+
+# Git aliases
+alias gr="git rev-parse --show-toplevel"
+alias gs="git status"
+alias gd="git diff"
+alias ga="git add"
+alias gc="git commit"
+alias gp="git push"
+alias gi="vim .gitignore"
+
+# Node.js and JavaScript aliases
+alias nr="npm run"
+
+# Cmake aliases
+alias cmake_options="cmake -LA | awk '{if(f)print} /-- Cache values/{f=1}'"
+
+# Ranger aliases
+alias ra="ranger"
+
+# Others
+alias m="mkdir"
+alias note='vim $(date +%Y.%m.%d).md'
+alias rdme="vim README.md"
+alias tree='tree -N'

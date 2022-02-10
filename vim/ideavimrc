@@ -1,0 +1,51 @@
+" https://qiita.com/sei40kr/items/09e7e92eb7686f9b5950
+" vimrc
+" Author: Yohei Tsuji
+" Email: t.t.t.yohei@gmail.com
+"
+"  __________         ___________
+" |_        _||       |__        ||
+"   |      ||          //      //
+"   |      ||        //      //
+"   |      ||      //      //
+"   |      ||    //      //
+"   |      ||  //      //
+"   |      |///      //
+"   |      |/      //_
+"   |            //__/
+"   |          //---/ -/-__--__--\ -_----\/-----/
+"   |        //  / /  / /^/ /^/ /  / / ^// /^^
+"   |      //   / /  / / / / / /  / /   / /__
+"   |____//    '--' '--''--''--' '--'   '-----'
+"
+"   =============================================>>>
+"
+
+" ======== Keybindings ========
+" Use <j>+<j> as <ESC> 
+inoremap <silent> jj <ESC>
+" Use <Y> as <y>+<$>
+nnoremap Y y$
+
+nnoremap gn :action NextTab<CR>
+nnoremap gp :action PreviousTab<CR>
+
+" Find
+nnoremap / :action Find<CR>
+
+" Jump
+nnoremap <C-o> :action Back<CR>
+nnoremap <C-i> :action Forward<CR>
+nnoremap <C-S-o> <C-o>
+nnoremap <C-S-i> <C-i>
+
+inoremap <C-b> <Left>
+inoremap <C-f> <Right>
+inoremap <C-n> <Down>
+inoremap <C-p> <Up>
+inoremap <C-a> <Home>
+inoremap <C-e> <End>
+
+
+" ======== Clipboard ========
+set clipboard+=unnamedplus

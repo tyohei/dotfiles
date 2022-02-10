@@ -1,0 +1,99 @@
+[toplevel]
+
+whoami = sts get-caller-identity
+
+region = !f() { [[ $# -eq 1 ]] && aws configure set region "$1" || aws configure get region; }; f
+regions = ec2 describe-regions --query 'Regions[].[RegionName]' --output text
+azs = ec2 describe-availability-zones
+
+running-instances = ec2 describe-instances \
+    --filter Name=instance-state-name,Values=running \
+    --output table \
+    --query 'Reservations[].Instances[].{ID: InstanceId,Hostname: PublicDnsName,Name: Tags[?Key==`Name`].Value | [0],Type: InstanceType, Platform: Platform || `Linux`}'
+
+stopped-instances = ec2 describe-instances \
+    --filter Name=instance-state-name,Values=stopped \
+    --output table \
+    --query 'Reservations[].Instances[].{ID: InstanceId,Hostname: PublicDnsName,Name: Tags[?Key==`Name`].Value | [0],Type: InstanceType, Platform: Platform || `Linux`}'
+
+instances =
+  !f() {
+    for region in $(aws regions); do
+      echo "======== REGION: ${region} ========"
+      aws running-instances --region ${region}
+    done
+  }; f
+
+instance-types = pricing get-attribute-values --attribute-name instanceType --service-code AmazonEC2 --query 'AttributeValues[*].[Value]' --output text --region us-east-1
+instance-families =
+  !f() {
+    aws instance-types | grep -v "\." 
+  }; f
+
+
+ml-instance-types = pricing get-attribute-values --attribute-name instanceType --service-code AmazonSageMaker --query 'AttributeValues[*].[Value]' --output text --region us-east-1
+
+security-groups = ec2 describe-security-groups --query "SecurityGroups[].{ID: GroupId, Name: GroupName, VPC: VpcId}" --output table
+
+vpcs = ec2 describe-vpcs --query "Vpcs[].[VpcId, CidrBlock]" --output table
+
+amazon-images = ec2 describe-images --owners amazon --filters "Name=name,Values=amzn*" --query 'sort_by(Images, &CreationDate)[].Name'
+
+dev-image = ec2 describe-images --owners amazon --filters 'Name=name,Values=amzn2-ami-hvm-2.0.????????.?-x86_64-gp2' 'Name=state,Values=available' --query 'reverse(sort_by(Images, &CreationDate))[:1].ImageId' --output text
+dev-security-group = ec2 describe-security-groups --filter Name=group-name,Values=Dev --query 'SecurityGroups[].[GroupId]' --output text
+dev-subnet = ec2 describe-subnets --filter Name=default-for-az,Values=true --query 'Subnets[0].[SubnetId]' --output text
+
+roles = iam list-roles --query 'Roles[*].[RoleName,Arn]' --output text
+
+local-policies = iam list-policies --scope Local --query 'Policies[*].[PolicyName,Arn]' --output text
+
+databases = rds describe-db-instances --query 'DBInstances[].{Name: DBInstanceIdentifier, Engine: Engine, Status: DBInstanceStatus, Endpoint: Endpoint.Address}' --output table
+
+services = pricing describe-services --query 'Services[].ServiceCode' --region us-east-1
+
+open-sagemaker-studio =
+  !f() {
+    local domain_id=$(aws sagemaker list-domains --query Domains[0].DomainId --output text)
+    local user_profile_name=$(aws sagemaker list-user-profiles --domain-id-equals ${domain_id} --query UserProfiles[0].UserProfileName --output text)
+    local presigned_domain_url=$(aws sagemaker create-presigned-domain-url --domain-id ${domain_id} --user-profile-name ${user_profile_name} --query AuthorizedUrl --output text)
+    open ${presigned_domain_url}
+  }; f
+
+ecr-login =
+  !f() {
+    local account_id=$(aws sts get-caller-identity --query 'Account' --output text)
+    local region=$(aws region)
+    aws ecr get-login-password \
+      | docker login --username AWS --password-stdin ${account_id}.dkr.ecr.${region}.amazonaws.com
+  }; f
+
+functions = lambda list-functions --query "Functions[].FunctionName"
+
+stacks = cloudformation list-stacks --stack-status-filter \
+        CREATE_IN_PROGRESS \
+        CREATE_FAILED \
+        CREATE_COMPLETE \
+        ROLLBACK_IN_PROGRESS \
+        ROLLBACK_FAILED \
+        ROLLBACK_COMPLETE \
+        DELETE_IN_PROGRESS \
+        DELETE_FAILED \
+        UPDATE_IN_PROGRESS \
+        UPDATE_COMPLETE_CLEANUP_IN_PROGRESS \
+        UPDATE_COMPLETE \
+        UPDATE_ROLLBACK_IN_PROGRESS \
+        UPDATE_ROLLBACK_FAILED \
+        UPDATE_ROLLBACK_COMPLETE_CLEANUP_IN_PROGRESS \
+        UPDATE_ROLLBACK_COMPLETE \
+        REVIEW_IN_PROGRESS \
+        IMPORT_IN_PROGRESS \
+        IMPORT_COMPLETE \
+        IMPORT_ROLLBACK_IN_PROGRESS \
+        IMPORT_ROLLBACK_FAILED \
+        IMPORT_ROLLBACK_COMPLETE \
+    --query 'StackSummaries[].{Name: StackName, Status: StackStatus}' \
+    --output table
+
+aurora-versions = rds describe-db-engine-versions \
+  --engine aurora-mysql \
+  --query "DBEngineVersions[*].ValidUpgradeTarget[*].{Engine: Engine, EngineVersion: EngineVersion, Description: Description}[] | sort_by(@, &EngineVersion) | reverse(@)"
