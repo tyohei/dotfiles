@@ -9,6 +9,8 @@ First install following libraries from HomeBrew:
 - zsh-completions
 - bash-completion
 - awscli
+- jq
+- yq
 
 ## 1. Download Files
 
@@ -30,6 +32,7 @@ echo "source ~/dotfiles/vim/init.vim" >> ~/.config/nvim/init.vim
 cd ~/dotfiles/downloads/
 sh ./installer.sh ~/.cache/dein
 
+pip install -U pip-search
 pip install -U neovim
 pip install -U pynvim
 pip install -U cfn-lint
