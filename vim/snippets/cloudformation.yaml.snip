@@ -1,3 +1,4 @@
+# vim: noexpandtab
 snippet main
 options head
 	# vim: ft=cloudformation.yaml
@@ -680,7 +681,7 @@ options head
 			IpProtocol: "-1"
 			SourceSecurityGroupId: !GetAtt SecurityGroup.GroupId
 
-	SecurityGroupIngressSsh:
+	SecurityGroupIngressSshPrefixListId:
 		Type: AWS::EC2::SecurityGroupIngress
 		Properties:
 			GroupId: !GetAtt SecurityGroup.GroupId
@@ -688,6 +689,15 @@ options head
 			ToPort: 22
 			IpProtocol: tcp
 			SourcePrefixListId: !FindInMap [ PrefixListIds, !Ref "AWS::Region", PrefixListId ]
+
+	SecurityGroupIngressSshCidr:
+		Type: AWS::EC2::SecurityGroupIngress
+		Properties:
+			GroupId: !GetAtt SecurityGroup.GroupId
+			FromPort: 22
+			ToPort: 22
+			IpProtocol: tcp
+			CidrIp: !Ref MyIpAddress
 
 # ==== IAM Role ====
 snippet iam_role
