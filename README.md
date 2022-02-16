@@ -1,6 +1,6 @@
 # Dotfiles
 
-First install following libraries from Homebrew:
+Dotfiles for macOS and Linux
 
 ## 0. Homebrew
 
