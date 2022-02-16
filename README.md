@@ -1,6 +1,7 @@
 # Dotfiles
 
 First install following libraries from HomeBrew:
+- go
 - git
 - git-secrets
 - neovim
@@ -33,6 +34,7 @@ cd ~/dotfiles/downloads/
 sh ./installer.sh ~/.cache/dein
 
 pip install -U pip-search
+pip install -U flake8
 pip install -U neovim
 pip install -U pynvim
 pip install -U cfn-lint

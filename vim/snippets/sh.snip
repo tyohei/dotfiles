@@ -1,21 +1,30 @@
 snippet getopts
 options head
-	OPTIND=1  # Reset in case getopts has been used previously in the shell.
-	while getopts h${1:x:} OPT; do
+	COMMAND="./deploy"
+	OPTIND=1	# Reset in case getopts has been used previously in the shell.
+	VERBOSE=0
+	while getopts vo:h OPT; do
 		case ${OPT} in
-			${2:x})
-				${3:VALUE_X=\$\{OPTARG\}}
+			v)
+				VERBOSE=1
 				;;
-			:)
-				echo "error: option argument is undefined"
+			o)
+				OUTPUT_FILE_NAME=${OPTARG}
 				;;
-			h|\?)
-				echo "help"
-				exit 0
+			h)
+				echo "USAGE:"
+				echo "		${COMMAND} [OPTIONS]"
+				echo ""
+				echo "OPTIONS:"
+				echo "		-v					Verbose"
+				echo "		-o<file>		Output file name"
 				;;
 		esac
 	done
-	${0}
+	if [[ -z "${OUTPUT_FILE_NAME+x}" ]]; then
+		echo "${COMMAND}: missing option -- o"
+		exit 1
+	fi
 
 
 snippet prefix

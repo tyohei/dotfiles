@@ -894,9 +894,9 @@ options head
 		Properties:
 			RoleName: !Sub ${Prefix}-${AWS::Region}-lambda-role
 			ManagedPolicyArns:
-        - arn:aws:iam::aws:policy/AWSXRayDaemonWriteAccess
-        - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
-        - arn:aws:iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole  # for VPC Lambda
+				- arn:aws:iam::aws:policy/AWSXRayDaemonWriteAccess
+				- arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+				- arn:aws:iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole	# for VPC Lambda
 			AssumeRolePolicyDocument:
 				Version: "2012-10-17"
 				Statement:
@@ -927,7 +927,7 @@ options head
 	Function:
 		Type: AWS::Serverless::Function
 		Properties:
-			CodeUri: functions/
+			CodeUri: function/
 			Handler: main.handler
 			Runtime: python3.8
 			Role: !GetAtt FunctionRole.Arn
