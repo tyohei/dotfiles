@@ -1,17 +1,22 @@
 # Dotfiles
 
-First install following libraries from HomeBrew:
-- go
-- git
-- git-secrets
-- neovim
-- coreutils
-- pyenv
-- zsh-completions
-- bash-completion
-- awscli
-- jq
-- yq
+First install following libraries from Homebrew:
+
+## 0. Homebrew
+
+```sh
+brew install go
+brew install git
+brew install git-secrets
+brew install neovim
+brew install coreutils
+brew install pyenv
+brew install zsh-completions
+brew install bash-completion
+brew install awscli
+brew install jq
+brew install yq
+```
 
 ## 1. Download Files
 
