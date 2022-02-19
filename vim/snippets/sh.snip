@@ -2,7 +2,6 @@ snippet getopts
 options head
 	COMMAND="./deploy"
 	OPTIND=1	# Reset in case getopts has been used previously in the shell.
-	VERBOSE=0
 	while getopts vo:h OPT; do
 		case ${OPT} in
 			v)
@@ -18,9 +17,13 @@ options head
 				echo "OPTIONS:"
 				echo "		-v					Verbose"
 				echo "		-o<file>		Output file name"
+				exit 0
 				;;
 		esac
 	done
+	if [[ -z "${VERBOSE+x}" ]]; then
+		VERBOSE=0  # default false
+	fi
 	if [[ -z "${OUTPUT_FILE_NAME+x}" ]]; then
 		echo "${COMMAND}: missing option -- o"
 		exit 1

@@ -113,6 +113,24 @@ options head
 		Type: AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>
 		Default: /aws/service/ecs/optimized-ami/amazon-linux-2/recommended/image_id
 
+snippet param_amazon_linux_2_ecs_optmized_arm64
+options head
+	ImageId:
+		Type: AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>
+		Default: /aws/service/ecs/optimized-ami/amazon-linux-2/arm64/recommended/image_id
+
+snippet param_amazon_linux_2_ecs_optmized_gpu
+options head
+	ImageId:
+		Type: AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>
+		Default: /aws/service/ecs/optimized-ami/amazon-linux-2/gpu/recommended/image_id
+
+snippet param_amazon_linux_2_ecs_optmized_inferentia
+options head
+	ImageId:
+		Type: AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>
+		Default: /aws/service/ecs/optimized-ami/amazon-linux-2/inf/recommended/image_id
+
 snippet param_windows_server_2019_ecs_optimized
 options head
 	ImageId:
@@ -250,14 +268,14 @@ options head
 			InstanceTenancy: default
 			Tags:
 				- Key: Name
-					Value: !Sub "${Prefix}-vpc"
+					Value: !Sub ${Prefix}-vpc
 
 	InternetGateway:
 		Type: AWS::EC2::InternetGateway
 		Properties:
 			Tags:
 				- Key: Name
-					Value: !Sub "${Prefix}-internet-gateway"
+					Value: !Sub ${Prefix}-internet-gateway
 
 	InternetGatewayAttachment:
 		Type: AWS::EC2::VPCGatewayAttachment
@@ -276,7 +294,7 @@ options head
 				- Fn::GetAZs: !Ref "AWS::Region"
 			Tags:
 				- Key: Name
-					Value: !Sub "${Prefix}-public-subnet-1"
+					Value: !Sub ${Prefix}-public-subnet-1
 
 	PublicSubnet2:
 		Type: AWS::EC2::Subnet
@@ -289,7 +307,7 @@ options head
 				- Fn::GetAZs: !Ref "AWS::Region"
 			Tags:
 				- Key: Name
-					Value: !Sub "${Prefix}-public-subnet-2"
+					Value: !Sub ${Prefix}-public-subnet-2
 
 	PrivateSubnet1:
 		Type: AWS::EC2::Subnet
@@ -302,7 +320,7 @@ options head
 				- Fn::GetAZs: !Ref "AWS::Region"
 			Tags:
 				- Key: Name
-					Value: !Sub "${Prefix}-private-subnet-1"
+					Value: !Sub ${Prefix}-private-subnet-1
 
 	PrivateSubnet2:
 		Type: AWS::EC2::Subnet
@@ -315,31 +333,43 @@ options head
 				- Fn::GetAZs: !Ref "AWS::Region"
 			Tags:
 				- Key: Name
-					Value: !Sub "${Prefix}-private-subnet-2"
+					Value: !Sub ${Prefix}-private-subnet-2
 
 	NatGateway1Eip:
 		Type: AWS::EC2::EIP
 		DependsOn: InternetGatewayAttachment
 		Properties:
 			Domain: vpc
+			Tags:
+				- Key: Name
+					Value: !Sub ${Prefix}-natgw-eip-1
 
 	NatGateway2Eip:
 		Type: AWS::EC2::EIP
 		DependsOn: InternetGatewayAttachment
 		Properties:
 			Domain: vpc
+			Tags:
+				- Key: Name
+					Value: !Sub ${Prefix}-natgw-eip-2
 
 	NatGateway1:
 		Type: AWS::EC2::NatGateway
 		Properties:
 			AllocationId: !GetAtt NatGateway1Eip.AllocationId
 			SubnetId: !Ref PublicSubnet1
+			Tags:
+				- Key: Name
+					Value: !Sub ${Prefix}-natgw-1
 
 	NatGateway2:
 		Type: AWS::EC2::NatGateway
 		Properties:
 			AllocationId: !GetAtt NatGateway2Eip.AllocationId
 			SubnetId: !Ref PublicSubnet2
+			Tags:
+				- Key: Name
+					Value: !Sub ${Prefix}-natgw-2
 
 	PublicRouteTable:
 		Type: AWS::EC2::RouteTable
@@ -347,7 +377,7 @@ options head
 			VpcId: !Ref Vpc
 			Tags:
 				- Key: Name
-					Value: !Sub "${Prefix}-public-route-table"
+					Value: !Sub ${Prefix}-public-route-table
 
 	InternetGatewayRoute:
 		Type: AWS::EC2::Route
@@ -374,7 +404,7 @@ options head
 			VpcId: !Ref Vpc
 			Tags:
 				- Key: Name
-					Value: !Sub "${Prefix}-private-route-table-1"
+					Value: !Sub ${Prefix}-private-route-table-1
 
 	PrivateRouteTable2:
 		Type: AWS::EC2::RouteTable
@@ -382,7 +412,7 @@ options head
 			VpcId: !Ref Vpc
 			Tags:
 				- Key: Name
-					Value: !Sub "${Prefix}-private-route-table-2"
+					Value: !Sub ${Prefix}-private-route-table-2
 
 	NatGateway1Route:
 		Type: AWS::EC2::Route
@@ -435,14 +465,14 @@ options head
 			InstanceTenancy: default
 			Tags:
 				- Key: Name
-					Value: !Sub "${Prefix}-vpc"
+					Value: !Sub ${Prefix}-vpc
 
 	InternetGateway:
 		Type: AWS::EC2::InternetGateway
 		Properties:
 			Tags:
 				- Key: Name
-					Value: !Sub "${Prefix}-internet-gateway"
+					Value: !Sub ${Prefix}-internet-gateway
 
 	InternetGatewayAttachment:
 		Type: AWS::EC2::VPCGatewayAttachment
@@ -461,7 +491,7 @@ options head
 				- Fn::GetAZs: !Ref "AWS::Region"
 			Tags:
 				- Key: Name
-					Value: !Sub "${Prefix}-public-subnet-1"
+					Value: !Sub ${Prefix}-public-subnet-1
 
 	PublicSubnet2:
 		Type: AWS::EC2::Subnet
@@ -474,7 +504,7 @@ options head
 				- Fn::GetAZs: !Ref "AWS::Region"
 			Tags:
 				- Key: Name
-					Value: !Sub "${Prefix}-public-subnet-2"
+					Value: !Sub ${Prefix}-public-subnet-2
 
 	PublicSubnet3:
 		Type: AWS::EC2::Subnet
@@ -487,7 +517,7 @@ options head
 				- Fn::GetAZs: !Ref "AWS::Region"
 			Tags:
 				- Key: Name
-					Value: !Sub "${Prefix}-public-subnet-3"
+					Value: !Sub ${Prefix}-public-subnet-3
 
 	PrivateSubnet1:
 		Type: AWS::EC2::Subnet
@@ -500,7 +530,7 @@ options head
 				- Fn::GetAZs: !Ref "AWS::Region"
 			Tags:
 				- Key: Name
-					Value: !Sub "${Prefix}-private-subnet-1"
+					Value: !Sub ${Prefix}-private-subnet-1
 
 	PrivateSubnet2:
 		Type: AWS::EC2::Subnet
@@ -513,7 +543,7 @@ options head
 				- Fn::GetAZs: !Ref "AWS::Region"
 			Tags:
 				- Key: Name
-					Value: !Sub "${Prefix}-private-subnet-2"
+					Value: !Sub ${Prefix}-private-subnet-2
 
 	PrivateSubnet3:
 		Type: AWS::EC2::Subnet
@@ -526,43 +556,61 @@ options head
 				- Fn::GetAZs: !Ref "AWS::Region"
 			Tags:
 				- Key: Name
-					Value: !Sub "${Prefix}-private-subnet-3"
+					Value: !Sub ${Prefix}-private-subnet-3
 
 	NatGateway1Eip:
 		Type: AWS::EC2::EIP
 		DependsOn: InternetGatewayAttachment
 		Properties:
 			Domain: vpc
+			Tags:
+				- Key: Name
+					Value: !Sub ${Prefix}-natgw-eip-1
 
 	NatGateway2Eip:
 		Type: AWS::EC2::EIP
 		DependsOn: InternetGatewayAttachment
 		Properties:
 			Domain: vpc
+			Tags:
+				- Key: Name
+					Value: !Sub ${Prefix}-natgw-eip-2
 
 	NatGateway3Eip:
 		Type: AWS::EC2::EIP
 		DependsOn: InternetGatewayAttachment
 		Properties:
 			Domain: vpc
+			Tags:
+				- Key: Name
+					Value: !Sub ${Prefix}-natgw-eip-3
 
 	NatGateway1:
 		Type: AWS::EC2::NatGateway
 		Properties:
 			AllocationId: !GetAtt NatGateway1Eip.AllocationId
 			SubnetId: !Ref PublicSubnet1
+			Tags:
+				- Key: Name
+					Value: !Sub ${Prefix}-natgw-1
 
 	NatGateway2:
 		Type: AWS::EC2::NatGateway
 		Properties:
 			AllocationId: !GetAtt NatGateway2Eip.AllocationId
 			SubnetId: !Ref PublicSubnet2
+			Tags:
+				- Key: Name
+					Value: !Sub ${Prefix}-natgw-2
 
 	NatGateway3:
 		Type: AWS::EC2::NatGateway
 		Properties:
 			AllocationId: !GetAtt NatGateway3Eip.AllocationId
 			SubnetId: !Ref PublicSubnet3
+			Tags:
+				- Key: Name
+					Value: !Sub ${Prefix}-natgw-3
 
 	PublicRouteTable:
 		Type: AWS::EC2::RouteTable
@@ -570,7 +618,7 @@ options head
 			VpcId: !Ref Vpc
 			Tags:
 				- Key: Name
-					Value: !Sub "${Prefix}-public-route-table"
+					Value: !Sub ${Prefix}-public-route-table
 
 	InternetGatewayRoute:
 		Type: AWS::EC2::Route
@@ -603,7 +651,7 @@ options head
 			VpcId: !Ref Vpc
 			Tags:
 				- Key: Name
-					Value: !Sub "${Prefix}-private-route-table-1"
+					Value: !Sub ${Prefix}-private-route-table-1
 
 	PrivateRouteTable2:
 		Type: AWS::EC2::RouteTable
@@ -611,7 +659,7 @@ options head
 			VpcId: !Ref Vpc
 			Tags:
 				- Key: Name
-					Value: !Sub "${Prefix}-private-route-table-2"
+					Value: !Sub ${Prefix}-private-route-table-2
 
 	PrivateRouteTable3:
 		Type: AWS::EC2::RouteTable
@@ -619,7 +667,7 @@ options head
 			VpcId: !Ref Vpc
 			Tags:
 				- Key: Name
-					Value: !Sub "${Prefix}-private-route-table-3"
+					Value: !Sub ${Prefix}-private-route-table-3
 
 	NatGateway1Route:
 		Type: AWS::EC2::Route
@@ -666,7 +714,7 @@ options head
 	SecurityGroup:
 		Type: AWS::EC2::SecurityGroup
 		Properties:
-			GroupDescription: !Sub "Security Group for ${Prefix}"
+			GroupDescription: !Sub "${Prefix} Security Group"
 			GroupName: !Sub ${Prefix}-security-group
 			VpcId: !Ref Vpc
 

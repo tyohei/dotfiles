@@ -174,6 +174,13 @@ if hash aws_completer 2>/dev/null; then
 fi
 
 
+# ============ Visula Studio Code ============
+# https://code.visualstudio.com/docs/setup/mac
+if [[ $(uname) = "Darwin" ]]; then
+  export PATH="${PATH}:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+fi
+
+
 # ============ Prompt ============
 if [[ -e "${PREXEC_FILE}" ]]; then
   source "${PREXEC_FILE}"
