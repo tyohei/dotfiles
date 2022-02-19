@@ -2,33 +2,73 @@
 
 Dotfiles for macOS and Linux
 
-## 0. Homebrew
+## 1. Install [Homebrew](https://brew.sh/)
+
+## 2. Install Git and Other Tools
 
 ```sh
-brew install go
-brew install git
-brew install git-secrets
-brew install neovim
-brew install coreutils
+brew install \
+  git \
+  git-secrets \
+  zsh-completions \
+  bash-completion \
+  coreutils \
+  jq \
+  yq
+```
+
+## 3. Setup Git
+
+```sh
+git config --global user.name "[FIRST LAST]"
+git config --global user.email "[EMAIL]"
+```
+
+## 4. Clone/Download Files
+
+```sh
+cd
+git clone https://tyohei/dotfiles.git
+cd ~/dotfiles/downloads
+sh ./download.sh
+```
+
+### 5. Setup Zsh and Bash
+
+```sh
+echo "source ~/dotfiles/zsh/zshrc" >> ~/.zshrc
+echo "source ~/dotfiles/bash/bashrc" >> ~/.bashrc
+```
+
+## 6. Install pyenv
+
+```sh
 brew install pyenv
-brew install zsh-completions
-brew install bash-completion
-brew install awscli
-brew install jq
-brew install yq
+pyenv install -l
+pyenv install 3.9.10
+pyenv global 3.9.10
 ```
 
-## 1. Download Files
+## 7. Setup Python
 
-```
-$ sh ./download.sh
+```sh
+pip install -U \
+  pip-search \
+  flake8 \
+  neovim \
+  pynvim \
+  cfn-lint \
+  jedi
 ```
 
-## 2. Vim/Neovim
+## 8. Vim/Neovim
 
 - https://github.com/Shougo/dein.vim
 
 ```sh
+brew install neovim
+brew install go
+
 mkdir -p ~/.vim
 echo "source ~/dotfiles/vim/vimrc" >> ~/.vimrc
 
@@ -37,52 +77,35 @@ echo "source ~/dotfiles/vim/init.vim" >> ~/.config/nvim/init.vim
 
 cd ~/dotfiles/downloads/
 sh ./installer.sh ~/.cache/dein
-
-pip install -U pip-search
-pip install -U flake8
-pip install -U neovim
-pip install -U pynvim
-pip install -U cfn-lint
-pip install -U jedi
 ```
 
-
-## 3. Bash
-
-```sh
-echo "source ~/dotfiles/bash/bashrc" >> ~/.bashrc
-```
-
-## 4. Zsh
-
-```sh
-echo "source ~/dotfiles/zsh/zshrc" >> ~/.zshrc
-```
-
-## 5. Tmux
+## 9. Tmux
 
 ```sh
 echo "source ~/dotfiles/tmux/tmux.conf" >> ~/.tmux.conf
 ```
 
-## 6. LaTeXmk
+## 10. LaTeXmk
 
 ```sh
 ln -s ~/dotfiles/latexmk/latexmkrc ~/.latexmkrc
 ```
 
-## 7. Karabiner
+## 11. Karabiner
 
 - https://karabiner-elements.pqrs.org/docs/
 
 ```sh
 cd ~/.config/karabiner/assets/complex_modifications
-ln -s ~/dotfiles/karabiner.json .
+ln -s ~/dotfiles/karabiner/karabiner.json .
 ```
 
-## 8. AWS CLI
+## 12. AWS CLI and AWS SAM CLI
+
+- https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install-mac.html
 
 ```sh
+brew install awscli
 mkdir -p ~/.aws/cli
 ln -s ~/dotfiles/aws/alias ~/.aws/cli/alias
 ```
