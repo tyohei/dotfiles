@@ -100,12 +100,45 @@ cd ~/.config/karabiner/assets/complex_modifications
 ln -s ~/dotfiles/karabiner/karabiner.json .
 ```
 
-## 12. AWS CLI and AWS SAM CLI
+## 12. Node.js
+
+- https://github.com/nvm-sh/nvm
+
+```sh
+nvm --version
+nvm install --lts
+nvm install --lts=Fermium
+nvm list
+nvm alias default
+
+node --version
+npm --version
+npm list -g --depth=0
+npm install -g typescript
+```
+
+## 12. AWS CLI, AWS SAM CLI, AWS CDK Toolkit, AWS Amplify CLI, and Rain
 
 - https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install-mac.html
+- https://docs.aws.amazon.com/cdk/v2/guide/cli.html
+- https://docs.amplify.aws/cli/start/install/
+- https://github.com/aws-cloudformation/rain
 
 ```sh
 brew install awscli
 mkdir -p ~/.aws/cli
 ln -s ~/dotfiles/aws/alias ~/.aws/cli/alias
+aws --version
+
+brew tap aws/tap
+brew install aws-sam-cli
+sam --version
+
+npm install -g aws-cdk
+cdk --version
+
+npm install -g @aws-amplify/cli
+amplify --version
+
+brew install rain
 ```
