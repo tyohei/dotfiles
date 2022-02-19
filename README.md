@@ -33,7 +33,7 @@ cd ~/dotfiles/downloads
 sh ./download.sh
 ```
 
-### 5. Setup Zsh and Bash
+## 5. Setup Zsh and Bash
 
 ```sh
 echo "source ~/dotfiles/zsh/zshrc" >> ~/.zshrc
@@ -135,6 +135,7 @@ brew install aws-sam-cli
 sam --version
 
 npm install -g aws-cdk
+ln -s ~/dotfiles/aws/cdk.json ~/.cdk.json
 cdk --version
 
 npm install -g @aws-amplify/cli
