@@ -14,7 +14,8 @@ brew install \
   bash-completion \
   coreutils \
   jq \
-  yq
+  yq \
+  amazon-workspaces
 ```
 
 ## 3. Setup Git
