@@ -97,3 +97,11 @@ stacks = cloudformation list-stacks --stack-status-filter \
 aurora-versions = rds describe-db-engine-versions \
   --engine aurora-mysql \
   --query "DBEngineVersions[*].ValidUpgradeTarget[*].{Engine: Engine, EngineVersion: EngineVersion, Description: Description}[] | sort_by(@, &EngineVersion) | reverse(@)"
+
+neptune-versions = neptune describe-db-engine-versions \
+  --engine neptune \
+  --query "DBEngineVersions[*].ValidUpgradeTarget[*].{Engine: Engine, EngineVersion: EngineVersion, Description: Description}[] | sort_by(@, &EngineVersion) | reverse(@)"
+
+docdb-versions = docdb describe-db-engine-versions \
+  --engine docdb \
+  --query "DBEngineVersions[*].{Engine: Engine, EngineVersion: EngineVersion, Description: DBEngineVersionDescription}[] | sort_by(@, &EngineVersion) | reverse(@)"
