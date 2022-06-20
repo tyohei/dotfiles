@@ -81,3 +81,4 @@ alias m="mkdir"
 alias note='vim $(date +%Y.%m.%d).md'
 alias rdme="vim README.md"
 alias tree='tree -N'
+alias myip='dig TXT +short o-o.myaddr.l.google.com @ns1.google.com | tr -d \"'

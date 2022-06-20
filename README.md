@@ -15,7 +15,8 @@ brew install \
   coreutils \
   jq \
   yq \
-  amazon-workspaces
+  amazon-workspaces \
+  shellcheck
 ```
 
 ## 3. Setup Git
@@ -59,7 +60,9 @@ pip install -U \
   neovim \
   pynvim \
   cfn-lint \
-  jedi
+  jedi \
+  jupyterlab \
+  matplotlib
 ```
 
 ## 8. Vim/Neovim

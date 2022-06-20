@@ -85,8 +85,8 @@
                 "^org\\.chromium\\.Chromium$",
                 "^jp\\.naver\\.line\\.mac$",
                 "^com\\.tinyspeck\\.slackmacgap$",
-                "^com\\.apple\\.finder$"
-
+                "^com\\.apple\\.finder$",
+                "^com\\.adobe\\.Reader$"
               ]
             }
           ]
@@ -113,7 +113,8 @@
                 "^org\\.chromium\\.Chromium$",
                 "^jp\\.naver\\.line\\.mac$",
                 "^com\\.tinyspeck\\.slackmacgap$",
-                "^com\\.apple\\.finder$"
+                "^com\\.apple\\.finder$",
+                "^com\\.adobe\\.Reader$"
               ]
             }
           ]
@@ -146,7 +147,8 @@
                 "^notion\\.id$",
                 "^org\\.chromium\\.Chromium$",
                 "^com\\.tinyspeck\\.slackmacgap$",
-                "^com\\.apple\\.finder$"
+                "^com\\.apple\\.finder$",
+                "^com\\.adobe\\.Reader$"
               ]
             }
           ]
@@ -174,7 +176,8 @@
                 "^notion\\.id$",
                 "^org\\.chromium\\.Chromium$",
                 "^com\\.tinyspeck\\.slackmacgap$",
-                "^com\\.apple\\.finder$"
+                "^com\\.apple\\.finder$",
+                "^com\\.adobe\\.Reader$"
               ]
             }
           ]
