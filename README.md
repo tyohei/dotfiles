@@ -18,11 +18,31 @@ brew install \
   amazon-workspaces
 ```
 
-## 3. Setup Git
+## 3. Setup Git and GitHub
+
+- https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
 
 ```sh
 git config --global user.name "[FIRST LAST]"
 git config --global user.email "[EMAIL]"
+```
+
+```sh
+ssh-keygen -t ed25519 -C "[EMAIL]"
+cat << EOF >> ~/.ssh/config
+Host github
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/[FILE PATH]
+EOF
+```
+
+Then add you public key to GitHub.
+
+```sh
+ssh github
+# Hi <NAME>! You've successfully authenticated, but GitHub does not provide shell access.
+Connection to github.com closed.
 ```
 
 ## 4. Clone/Download Files
