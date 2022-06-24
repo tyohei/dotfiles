@@ -182,6 +182,13 @@ if [[ $(uname) = "Darwin" ]]; then
 fi
 
 
+# ============ 1Password CLI ============
+# https://developer.1password.com/docs/cli/get-started#shell-completion
+if hash op 2>/dev/null; then
+  source <(op completion bash)
+fi
+
+
 # ============ Prompt ============
 if [[ -e "${PREXEC_FILE}" ]]; then
   source "${PREXEC_FILE}"

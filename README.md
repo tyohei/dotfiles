@@ -85,7 +85,7 @@ pip install -U \
   matplotlib
 ```
 
-## 8. Vim/Neovim
+## 8. Vim/Neovim/IdeaVim
 
 - https://github.com/Shougo/dein.vim
 
@@ -98,6 +98,8 @@ echo "source ~/dotfiles/vim/vimrc" >> ~/.vimrc
 
 mkdir -p ~/.config/nvim/
 echo "source ~/dotfiles/vim/init.vim" >> ~/.config/nvim/init.vim
+
+echo "source ~/dotfiles/vim/ideavimrc" >> ~/.ideavimrc
 
 cd ~/dotfiles/downloads/
 sh ./installer.sh ~/.cache/dein

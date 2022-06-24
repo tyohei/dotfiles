@@ -217,6 +217,13 @@ if [[ $(uname) = "Darwin" ]]; then
 fi
 
 
+# ============ 1Password CLI ============
+# https://developer.1password.com/docs/cli/get-started#shell-completion
+if hash op 2>/dev/null; then
+  eval "$(op completion zsh)"; compdef _op op
+fi
+
+
 # ============ Prompt ============
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 export PROMPT='[ %* | %n @ %M : %F{3}%~%f ]

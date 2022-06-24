@@ -165,7 +165,7 @@ nnoremap <Leader>e :e<Space>
 " Change directory to the one that currently opening file exists
 nnoremap <Leader>c :cd %:p:h<CR>
 " Terminal Mode
-tnoremap <silent> jj <C-\><C-n>
+tnoremap <silent> <Esc><Esc> <C-\><C-n>
 
 
 " ======== Filetype ======== "
