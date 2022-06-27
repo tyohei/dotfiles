@@ -105,3 +105,28 @@ neptune-versions = neptune describe-db-engine-versions \
 docdb-versions = docdb describe-db-engine-versions \
   --engine docdb \
   --query "DBEngineVersions[*].{Engine: Engine, EngineVersion: EngineVersion, Description: DBEngineVersionDescription}[] | sort_by(@, &EngineVersion) | reverse(@)"
+
+monthly-cost =
+  !f() {
+    local target_year=$(date +%Y)
+    local target_month
+    local last_day
+
+    if [[ $# -eq 1 ]]; then
+      target_month=${1}
+    else
+      target_month=$(date +%m)
+    fi
+
+    if [[ $(uname) = "Darwin" ]]; then
+      last_day=$(date -v1d -v"$((${target_month} + 1))"m -v-1d "+%d")
+    elif [[ $(uname) = "Linux" ]]; then
+      last_day=$(date -d "${target_month}/1 month -1 day" "+%d")
+    fi
+
+    aws ce get-cost-and-usage \
+      --time-period Start="${target_year}-${target_month}-01",End="${target_year}-${target_month}-${last_day}" \
+      --granularity MONTHLY \
+      --metrics AmortizedCost \
+      --region us-east-1
+  }; f
