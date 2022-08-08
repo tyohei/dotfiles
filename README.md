@@ -15,8 +15,8 @@ brew install \
   coreutils \
   jq \
   yq \
-  amazon-workspaces \
-  shellcheck
+  shellcheck \
+  bat
 ```
 
 ## 3. Setup Git and GitHub
@@ -143,12 +143,13 @@ npm list -g --depth=0
 npm install -g typescript
 ```
 
-## 12. AWS CLI, AWS SAM CLI, AWS CDK Toolkit, AWS Amplify CLI, and Rain
+## 12. AWS Tools
 
-- https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install-mac.html
-- https://docs.aws.amazon.com/cdk/v2/guide/cli.html
-- https://docs.amplify.aws/cli/start/install/
-- https://github.com/aws-cloudformation/rain
+- [AWS SAM CLI](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install-mac.html)
+- [AWS CDKv2 Toolkit](https://docs.aws.amazon.com/cdk/v2/guide/cli.html)
+- [AWS Amplify](https://docs.amplify.aws/cli/start/install/)
+- [Rain](https://github.com/aws-cloudformation/rain)
+- Amazon WorkSpaces
 
 ```sh
 brew install awscli
@@ -168,4 +169,6 @@ npm install -g @aws-amplify/cli
 amplify --version
 
 brew install rain
+
+brew install --cask amazon-workspaces
 ```
