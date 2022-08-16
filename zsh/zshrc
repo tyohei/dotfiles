@@ -224,6 +224,10 @@ if hash op 2>/dev/null; then
 fi
 
 
+# ============ Fig ============
+export FIG_WORKFLOWS_KEYBIND="^\\"
+
+
 # ============ Prompt ============
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 export PROMPT='[ %* | %n @ %M : %F{3}%~%f ]

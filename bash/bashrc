@@ -189,6 +189,10 @@ if hash op 2>/dev/null; then
 fi
 
 
+# ============ Fig ============
+export FIG_WORKFLOWS_KEYBIND="^\\"
+
+
 # ============ Prompt ============
 if [[ -e "${PREXEC_FILE}" ]]; then
   source "${PREXEC_FILE}"
