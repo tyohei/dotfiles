@@ -108,6 +108,7 @@ bindkey -e
 # ==== Completions in Homebrew ====
 if [[ $(uname) = "Darwin" ]] && hash brew 2> /dev/null; then
   fpath=($(brew --prefix)/share/zsh-completions ${fpath})
+  fpath=($(brew --prefix)/share/zsh/site-functions ${fpath})
 fi
 
 # ==== Completions in cd ====
@@ -151,9 +152,16 @@ if [[ $(uname) = "Darwin" ]] && hash brew 2> /dev/null; then
       echo ""
       echo "    $ brew install zsh-completions"
       echo ""
-      echo "Then, follow this link: https://docs.docker.com/desktop/mac/#install-shell-completion"
+      echo "Then, create symbolic links for docker and docker-compose"
+      echo ""
+      echo "    $ ln -s /Applications/Docker.app/Contents/Resources/etc/docker.zsh-completion \\"
+      echo "        $(brew --prefix)/share/zsh/site-functions/_docker"
+      echo ""
+      echo "    $ ln -s /Applications/Docker.app/Contents/Resources/etc/docker-compose.zsh-completion \\"
+      echo "        $(brew --prefix)/share/zsh/site-functions/_docker-compose"
       echo ""
     fi
+    autoload -Uz compinit && compinit
     zstyle ':completion:*:*:docker:*' option-stacking yes
     zstyle ':completion:*:*:docker-*:*' option-stacking yes
   fi
