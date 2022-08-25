@@ -16,7 +16,8 @@ brew install \
   jq \
   yq \
   shellcheck \
-  bat
+  bat \
+  tree
 ```
 
 ## 3. Setup Git and GitHub
@@ -72,6 +73,8 @@ pyenv global 3.9.10
 ```
 
 ## 7. Setup Python
+
+- Install [Poetry](https://python-poetry.org/docs/#installation)
 
 ```sh
 pip install -U \
