@@ -53,7 +53,8 @@
                 "^org\\.macports\\.X11$",
                 "^com\\.sublimetext\\.",
                 "^com\\.microsoft\\.VSCode$",
-                "^com\\.jetbrains\\.pycharm$"
+                "^com\\.jetbrains\\.pycharm$",
+                "^com\\.apple\\.Safari$"
               ]
             }
           ]
@@ -86,7 +87,8 @@
                 "^jp\\.naver\\.line\\.mac$",
                 "^com\\.tinyspeck\\.slackmacgap$",
                 "^com\\.apple\\.finder$",
-                "^com\\.adobe\\.Reader$"
+                "^com\\.adobe\\.Reader$",
+                "^com\\.apple\\.Safari$"
               ]
             }
           ]
@@ -114,7 +116,8 @@
                 "^jp\\.naver\\.line\\.mac$",
                 "^com\\.tinyspeck\\.slackmacgap$",
                 "^com\\.apple\\.finder$",
-                "^com\\.adobe\\.Reader$"
+                "^com\\.adobe\\.Reader$",
+                "^com\\.apple\\.Safari$"
               ]
             }
           ]
@@ -148,7 +151,8 @@
                 "^org\\.chromium\\.Chromium$",
                 "^com\\.tinyspeck\\.slackmacgap$",
                 "^com\\.apple\\.finder$",
-                "^com\\.adobe\\.Reader$"
+                "^com\\.adobe\\.Reader$",
+                "^com\\.apple\\.Safari$"
               ]
             }
           ]
@@ -177,7 +181,8 @@
                 "^org\\.chromium\\.Chromium$",
                 "^com\\.tinyspeck\\.slackmacgap$",
                 "^com\\.apple\\.finder$",
-                "^com\\.adobe\\.Reader$"
+                "^com\\.adobe\\.Reader$",
+                "^com\\.apple\\.Safari$"
               ]
             }
           ]
