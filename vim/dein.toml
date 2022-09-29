@@ -153,6 +153,9 @@ let g:ale_echo_msg_format = '[%linter%] %code: %%s'
 
 [[plugins]]
 repo = 'chrisbra/csv.vim'
+hook_add = '''
+let g:csv_default_delim=','
+'''
 
 
 [[plugins]]
