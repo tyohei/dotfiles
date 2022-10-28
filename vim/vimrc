@@ -178,9 +178,9 @@ source $VIMRUNTIME/macros/matchit.vim
 
 " AWS CloudFormation
 " Requires [cfn-lint](https://github.com/aws-cloudformation/cfn-lint)
-" You MUST update the [CloudFormation Resource Specifications](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-resource-specification.html)
-" regulary to enable correct linting.
-" To update run `env OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES cfn-lint -u` in your command line.
+" You MUST regulary update the [CloudFormation Resource Specifications](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-resource-specification.html)
+" to enable correct linting.
+" To update run `cfn-lint -u` in your command line.
 au BufRead,BufNewFile *.cloudformation.yaml setfiletype cloudformation.yaml
 au BufRead,BufNewFile *.cloudformation.yml setfiletype cloudformation.yaml
 au BufRead,BufNewFile *.cfn.yaml setfiletype cloudformation.yaml

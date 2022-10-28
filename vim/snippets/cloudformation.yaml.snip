@@ -1122,3 +1122,54 @@ options head
 			Handler: main.handler
 			Runtime: python3.8
 			Role: !GetAtt FunctionRole.Arn
+
+
+# ==== Delay Custom Resource ====
+snippet delay
+options head
+	# https://github.com/aws-cloudformation/cloudformation-coverage-roadmap/issues/589
+	DelayFunctionRole:
+		Type: AWS::IAM::Role
+		Properties:
+			RoleName: !Sub ${Prefix}-${AWS::Region}-delay-function-role
+			AssumeRolePolicyDocument:
+				Version: "2012-10-17"
+				Statement:
+					- Effect: Allow
+						Principal:
+							Service:
+								- "lambda.amazonaws.com"
+						Action:
+							- "sts:AssumeRole"
+			ManagedPolicyArns:
+				- arn:aws:iam::aws:policy/AWSXRayDaemonWriteAccess
+				- arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+				- arn:aws:iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole  # for VPC Lambda
+
+  DelayFunction:
+		Type: AWS::Lambda::Function
+		Properties:
+			FunctionName: !Sub ${Prefix}-delay-function
+			Runtime: python3.8
+			Handler: index.handler
+			MemorySize: 128
+			Timeout: 660
+			Role: !GetAtt DelayFunctionRole.Arn
+			Code:
+				ZipFile: |
+					import time
+					import cfnresponse
+
+					def handler(event, context):
+						time_to_wait = int(event['ResourceProperties']['TimeToWait'])
+						print(f'Waiting for {time_to_wait} seconds')
+						time.sleep(time_to_wait)
+						print(f'Waiting finished')
+						cfnresponse.send(event, context, cfnresponse.SUCCESS, {},'')
+
+	Delay:
+		Type: Custom::Delay
+		DependsOn: <ENTER RESOURCE NAME>
+		Properties:
+			ServiceToken: !GetAtt DelayFunction.Arn
+			TimeToWait: 300  # 300 seconds
