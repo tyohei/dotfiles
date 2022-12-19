@@ -17,7 +17,8 @@ brew install \
   yq \
   shellcheck \
   bat \
-  tree
+  tree \
+  im-select
 ```
 
 ## 3. Setup Git and GitHub
@@ -91,6 +92,7 @@ pip install -U \
 ## 8. Vim/Neovim/IdeaVim
 
 - https://github.com/Shougo/dein.vim
+- https://github.com/daipeihust/im-select
 
 ```sh
 brew install neovim
@@ -106,6 +108,9 @@ echo "source ~/dotfiles/vim/ideavimrc" >> ~/.ideavimrc
 
 cd ~/dotfiles/downloads/
 sh ./installer.sh ~/.cache/dein
+
+# For Japanese inputs
+brew tap daipeihust/tap && brew install im-select
 ```
 
 ## 9. Tmux

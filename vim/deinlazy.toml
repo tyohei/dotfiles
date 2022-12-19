@@ -199,3 +199,11 @@ let g:terraform_align = 1
 [[plugins]]
 repo = 'ipkiss42/xwiki.vim.git'
 on_ft = ['xwiki']
+
+
+
+# Swift
+# ================================
+[[plugins]]
+repo = 'keith/swift.vim'
+on_ft = ['swift']
