@@ -83,7 +83,6 @@ pip install -U \
   flake8 \
   neovim \
   pynvim \
-  cfn-lint \
   jedi \
   jupyterlab \
   matplotlib
@@ -179,4 +178,6 @@ amplify --version
 brew install rain
 
 brew install --cask amazon-workspaces
+
+brew install cfn-lint
 ```
