@@ -180,4 +180,6 @@ brew install rain
 brew install --cask amazon-workspaces
 
 brew install cfn-lint
+
+brew install git-remote-codecommit
 ```
