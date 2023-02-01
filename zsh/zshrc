@@ -227,7 +227,7 @@ fi
 
 # ============ 1Password CLI ============
 # https://developer.1password.com/docs/cli/get-started#shell-completion
-if tyep op > /dev/null; then
+if type op > /dev/null; then
   eval "$(op completion zsh)"; compdef _op op
 fi
 
