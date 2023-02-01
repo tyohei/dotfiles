@@ -44,7 +44,7 @@ function! ToggleTerm()
   if g:term_buf < 0
     " 1. Terminal is not launched
     botright new
-    exec "resize " . 12
+    exec "resize " . 16
     call termopen($SHELL, {'detach': 0, 'on_exit': function('s:onTermClose')})
     let g:term_buf = bufnr('')
     set nonumber
@@ -52,19 +52,19 @@ function! ToggleTerm()
     startinsert!
     let g:term_win = win_getid()
   elseif g:term_buf == bufnr('')
-    " 2. Terminal is opened and focused
+    " 2. Terminal is launched and opened and focused
     hide
   else
     let l:term_win = bufwinid(g:term_buf)
     if l:term_win < 0
-      " 3. Terminal is closed
+      " 3. Terminal is launched but closed
       botright split
-      exec "resize " . 12
+      exec "resize " . 16
       exec "buffer " . g:term_buf
       startinsert!
       let g:term_win = win_getid()
     else
-      " 4. Terminal is opened
+      " 4. Terminal is launched and opened
       call win_gotoid(l:term_win)
     endif
   endif
