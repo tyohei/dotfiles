@@ -240,3 +240,9 @@ export FIG_WORKFLOWS_KEYBIND="^\\"
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 export PROMPT='[ %* | %n @ %M : %F{3}%~%f ]
 $(__git_ps1 "(%s)")%# '
+
+
+# ============ Prompt ============
+# https://python-poetry.org/docs/master/#enable-tab-completion-for-bash-fish-or-zsh
+fpath=(~/.zfunc ${fpath})
+autoload -Uz compinit && compinit
