@@ -160,7 +160,3 @@ let g:csv_default_delim=','
 
 [[plugins]]
 repo = 'easymotion/vim-easymotion'
-
-
-[[plugins]]
-repo = 'brglng/vim-im-select'
