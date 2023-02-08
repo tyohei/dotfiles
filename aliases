@@ -53,7 +53,7 @@ fi
 
 # Bat aliases
 if hash bat 2>/dev/null; then
-  alias ba="bat -p"
+  alias ba="bat -p --pager \"less -RFX\""
 fi
 
 alias grep="grep --color=auto"
