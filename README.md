@@ -88,14 +88,22 @@ pip install -U \
   matplotlib
 ```
 
-## 8. Vim/Neovim/IdeaVim
+## 8. Setup Go
+
+```sh
+brew install go
+
+# https://github.com/golang/tools/tree/master/gopls
+go install golang.org/x/tools/gopls@latest
+```
+
+## 9. Vim/Neovim/IdeaVim
 
 - https://github.com/Shougo/dein.vim
 - https://github.com/daipeihust/im-select
 
 ```sh
 brew install neovim
-brew install go
 
 mkdir -p ~/.vim
 echo "source ~/dotfiles/vim/vimrc" >> ~/.vimrc
@@ -110,21 +118,24 @@ sh ./installer.sh ~/.cache/dein
 
 # For Japanese inputs
 brew tap daipeihust/tap && brew install im-select
+
+# For https://github.com/deoplete-plugins/deoplete-go
+go install github.com/stamblerre/gocode@latest
 ```
 
-## 9. Tmux
+## 10. Tmux
 
 ```sh
 echo "source ~/dotfiles/tmux/tmux.conf" >> ~/.tmux.conf
 ```
 
-## 10. LaTeXmk
+## 11. LaTeXmk
 
 ```sh
 ln -s ~/dotfiles/latexmk/latexmkrc ~/.latexmkrc
 ```
 
-## 11. Karabiner
+## 12. Karabiner
 
 - https://karabiner-elements.pqrs.org/docs/
 
@@ -133,7 +144,7 @@ cd ~/.config/karabiner/assets/complex_modifications
 ln -s ~/dotfiles/karabiner/karabiner.json .
 ```
 
-## 12. Node.js
+## 13. Node.js
 
 - https://github.com/nvm-sh/nvm
 
@@ -150,7 +161,7 @@ npm list -g --depth=0
 npm install -g typescript
 ```
 
-## 12. AWS Tools
+## 14. AWS Tools
 
 - [AWS SAM CLI](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install-mac.html)
 - [AWS CDKv2 Toolkit](https://docs.aws.amazon.com/cdk/v2/guide/cli.html)
