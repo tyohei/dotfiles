@@ -54,7 +54,9 @@
                 "^com\\.sublimetext\\.",
                 "^com\\.microsoft\\.VSCode$",
                 "^com\\.jetbrains\\.pycharm$",
-                "^com\\.apple\\.Safari$"
+                "^com\\.apple\\.Safari$",
+                "^com\\.microsoft\\.teams$"
+
               ]
             }
           ]
@@ -88,7 +90,8 @@
                 "^com\\.tinyspeck\\.slackmacgap$",
                 "^com\\.apple\\.finder$",
                 "^com\\.adobe\\.Reader$",
-                "^com\\.apple\\.Safari$"
+                "^com\\.apple\\.Safari$",
+                "^com\\.microsoft\\.teams$"
               ]
             }
           ]
@@ -117,7 +120,8 @@
                 "^com\\.tinyspeck\\.slackmacgap$",
                 "^com\\.apple\\.finder$",
                 "^com\\.adobe\\.Reader$",
-                "^com\\.apple\\.Safari$"
+                "^com\\.apple\\.Safari$",
+                "^com\\.microsoft\\.teams$"
               ]
             }
           ]
@@ -152,7 +156,8 @@
                 "^com\\.tinyspeck\\.slackmacgap$",
                 "^com\\.apple\\.finder$",
                 "^com\\.adobe\\.Reader$",
-                "^com\\.apple\\.Safari$"
+                "^com\\.apple\\.Safari$",
+                "^com\\.microsoft\\.teams$"
               ]
             }
           ]
@@ -182,7 +187,8 @@
                 "^com\\.tinyspeck\\.slackmacgap$",
                 "^com\\.apple\\.finder$",
                 "^com\\.adobe\\.Reader$",
-                "^com\\.apple\\.Safari$"
+                "^com\\.apple\\.Safari$",
+                "^com\\.microsoft\\.teams$"
               ]
             }
           ]
@@ -206,7 +212,8 @@
                 "^com\\.microsoft\\.Outlook$",
                 "^com\\.ideasoncanvas\\.mindnode\\.macos$",
                 "^com\\.apple\\.Preview$",
-                "^com\\.quip\\.Desktop$"
+                "^com\\.quip\\.Desktop$",
+                "^com\\.microsoft\\.teams$"
               ]
             }
           ]
@@ -225,7 +232,8 @@
                 "^com\\.microsoft\\.Outlook$",
                 "^com\\.ideasoncanvas\\.mindnode\\.macos$",
                 "^com\\.apple\\.Preview$",
-                "^com\\.quip\\.Desktop$"
+                "^com\\.quip\\.Desktop$",
+                "^com\\.microsoft\\.teams$"
               ]
             }
           ]
@@ -247,7 +255,8 @@
                 "^com\\.microsoft\\.Powerpoint$",
                 "^com\\.microsoft\\.Word$",
                 "^com\\.microsoft\\.Outlook$",
-                "^notion\\.id$"
+                "^notion\\.id$",
+                "^com\\.microsoft\\.teams$"
               ]
             }
           ]
@@ -267,7 +276,8 @@
               "bundle_identifiers": [
                 "^com\\.google\\.Chrome$",
                 "^notion\\.id$",
-                "^org\\.chromium\\.Chromium$"
+                "^org\\.chromium\\.Chromium$",
+                "^com\\.microsoft\\.teams$"
               ]
             }
           ]

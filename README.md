@@ -18,7 +18,7 @@ brew install \
   shellcheck \
   bat \
   tree \
-  im-select
+  cmake
 ```
 
 ## 3. Setup Git and GitHub
