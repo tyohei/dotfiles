@@ -138,6 +138,7 @@ ln -s ~/dotfiles/latexmk/latexmkrc ~/.latexmkrc
 ## 12. Karabiner
 
 - https://karabiner-elements.pqrs.org/docs/
+- https://karabiner-elements.pqrs.org/docs/json/location/
 
 ```sh
 cd ~/.config/karabiner/assets/complex_modifications

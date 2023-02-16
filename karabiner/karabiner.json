@@ -350,6 +350,24 @@
           ]
         }
       ]
+    },
+    {
+      "description": "Map cmd-k to cmd-e, which is Go to Search, in Microsoft Teams",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": { "key_code": "k", "modifiers": { "mandatory": [ "command" ], "optional": [ "option" ] } },
+          "to": [ { "key_code": "e", "modifiers": [ "command" ] } ],
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "^com\\.microsoft\\.teams$"
+              ]
+            }
+          ]
+        }
+      ]
     }
   ]
 }
