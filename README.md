@@ -18,7 +18,8 @@ brew install \
   shellcheck \
   bat \
   tree \
-  cmake
+  cmake \
+  lima
 ```
 
 ## 3. Setup Git and GitHub
@@ -194,4 +195,6 @@ brew install --cask amazon-workspaces
 brew install cfn-lint
 
 brew install git-remote-codecommit
+
+brew install --cask finch
 ```
