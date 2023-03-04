@@ -207,3 +207,10 @@ on_ft = ['xwiki']
 [[plugins]]
 repo = 'keith/swift.vim'
 on_ft = ['swift']
+
+
+# C#
+# ================================
+[[plugins]]
+repo = 'OmniSharp/omnisharp-vim'
+on_ft = ['cs']
