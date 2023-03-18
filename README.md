@@ -19,7 +19,8 @@ brew install \
   bat \
   tree \
   cmake \
-  lima
+  lima \
+  ranger
 ```
 
 ## 3. Setup Git and GitHub
@@ -197,4 +198,13 @@ brew install cfn-lint
 brew install git-remote-codecommit
 
 brew install --cask finch
+```
+
+## 15. Setup ranger
+
+* https://github.com/ranger/ranger
+
+```sh
+ranger
+echo 'set colorscheme solarized' >> ~/.config/ranger/rc.conf
 ```
