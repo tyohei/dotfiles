@@ -41,10 +41,11 @@ function! s:onTermClose(job_id, code, event) dict
 endfunction
 
 function! ToggleTerm()
+  let l:term_height = 20
   if g:term_buf < 0
     " 1. Terminal is not launched
     botright new
-    exec "resize " . 16
+    exec "resize " . l:term_height
     call termopen($SHELL, {'detach': 0, 'on_exit': function('s:onTermClose')})
     let g:term_buf = bufnr('')
     set nonumber
@@ -59,7 +60,7 @@ function! ToggleTerm()
     if l:term_win < 0
       " 3. Terminal is launched but closed
       botright split
-      exec "resize " . 16
+      exec "resize " . l:term_height
       exec "buffer " . g:term_buf
       startinsert!
       let g:term_win = win_getid()
