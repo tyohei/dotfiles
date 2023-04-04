@@ -142,9 +142,25 @@ endfunction
 " Display all buffers when there's only one tab open
 let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#branch#enabled=1
-" Determines a pattern to ignore a buffer name for various things (e.g. the
-" tabline extension) or the read-only check.
-let g:airline#extensions#tabline#ignore_bufadd_pat = '!|defx|gundo|nerd_tree|startify|tagbar|undotree|vimfiler'
+
+" Cycle buffer list in Airline's tabline (ignore terminal)
+
+function! PrevBufferTab()
+  bprev
+  if &buftype == 'terminal'
+    bprev
+  endif
+endfunction
+
+function! NextBufferTab()
+  bnext
+  if &buftype == 'terminal'
+    bnext
+  endif
+endfunction
+
+nnoremap gn :call NextBufferTab()<CR>
+nnoremap gp :call PrevBufferTab()<CR>
 '''
 
 
