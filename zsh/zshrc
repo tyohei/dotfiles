@@ -19,7 +19,12 @@ stty stop undef
 # ============ Set Envvars ============
 export PATH="$PATH:$HOME/.local/bin"
 export WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
-export EDITOR="vim"
+if type nvim > /dev/null; then
+  export EDITOR="nvim"
+else
+  export EDITOR="vim"
+fi
+
 
 
 # ============ Set directory colors ============
