@@ -26,7 +26,6 @@ else
 fi
 
 
-
 # ============ Set directory colors ============
 # Set directory colors.
 # Need `gdircolors` in macOS, install it from Homebrew.

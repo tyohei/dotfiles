@@ -1,99 +1,41 @@
+// Place your key bindings in this file to override the defaults
 [
-  {
-    "key": "ctrl+e",
-    "command": "workbench.view.explorer",
-    "when": "viewContainer.workbench.view.explorer.enabled && vim.active && vim.mode == 'Normal'"
-  },
-  {
-    "key": "ctrl+e",
-    "command":"workbench.action.toggleSidebarVisibility",
-    "when": "explorerViewletVisible && explorerViewletFocus"
-  },
-  {
-    "key": "ctrl+h",
-    "command": "workbench.action.focusLeftGroup",
-    "when": "!vim.mode || vim.mode == 'Normal'"
-  },
-  {
-    "key": "ctrl+j",
-    "command": "workbench.action.focusBelowGroup",
-    "when": "!vim.mode || vim.mode == 'Normal'"
-  },
-  {
-    "key": "ctrl+k",
-    "command": "workbench.action.focusAboveGroup",
-    "when": "!vim.mode || vim.mode == 'Normal'"
-  },
-  {
-    "key": "ctrl+l",
-    "command": "workbench.action.focusRightGroup",
-    "when": "!vim.mode || vim.mode == 'Normal'"
-  },
-  {
-    "key": "alt+h",
-    "command": "workbench.action.focusLeftGroup"
-  },
-  {
-    "key": "alt+j",
-    "command": "workbench.action.focusBelowGroup"
-  },
-  {
-    "key": "alt+k",
-    "command": "workbench.action.focusAboveGroup"
-  },
-  {
-    "key": "alt+l",
-    "command": "workbench.action.focusRightGroup"
-  },
+    // ======== Explorer Key Bindings ========
+    {
+        // If explorer is opened and not focused, then focus
+        "key": "ctrl+e",
+        "command": "workbench.view.explorer",
+        "when": "viewContainer.workbench.view.explorer.enabled"
+    },
+    {
+        // If explorer is opened and focused, then close
+        // If explorer is closed, then open and focus
+        "key": "ctrl+e",
+        "command": "workbench.action.toggleSidebarVisibility",
+        "when": "explorerViewletVisible && explorerViewletFocus"
+    },
 
+    // ======== Pane Movement Key Bindings ========
+    {
+        "key": "alt+h",
+        "command": "workbench.action.navigateLeft"
+      },
+      {
+        "key": "alt+j",
+        "command": "workbench.action.navigateDown"
+      },
+      {
+        "key": "alt+k",
+        "command": "workbench.action.navigateUp"
+      },
+      {
+        "key": "alt+l",
+        "command": "workbench.action.navigateRight"
+      },
 
-
-  {
-    "key": "ctrl+t",
-    "command":"workbench.action.terminal.toggleTerminal"
-  },
-
-
-
-  {
-    "key": "enter",
-    "command": "filesExplorer.openFilePreserveFocus",
-    "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceIsFolder && !inputFocus"
-  },
-  {
-    "key": "space",
-    "command": "-filesExplorer.openFilePreserveFocus",
-    "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceIsFolder && !inputFocus"
-  },
-
-
-
-  {
-    "key": "space",
-    "command": "renameFile",
-    "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus"
-  },
-  {
-    "key": "enter",
-    "command": "-renameFile",
-    "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus"
-  },
-
-
-
-  {
-    "key": "enter",
-    "command": "explorer.openAndPassFocus",
-    "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceIsFolder && !inputFocus"
-  },
-  {
-    "key": "ctrl+e",
-    "command": "-extension.vim_ctrl+e",
-    "when": "editorTextFocus && vim.active && vim.use<C-e> && !inDebugRepl"
-  },
-  {
-    "key": "ctrl+n",
-    "command": "-extension.vim_ctrl+n",
-    "when": "editorTextFocus && vim.active && vim.use<C-n> && !inDebugRepl || vim.active && vim.use<C-n> && !inDebugRepl && vim.mode == 'CommandlineInProgress' || vim.active && vim.use<C-n> && !inDebugRepl && vim.mode == 'SearchInProgressMode'"
-  }
+    // ======== Terminal Key Bindings ========
+    {
+        "key": "ctrl+t",
+        "command": "workbench.action.terminal.toggleTerminal"
+    }
 ]

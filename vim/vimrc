@@ -159,6 +159,7 @@ nnoremap Y y$
 nnoremap gn :bn<CR>
 nnoremap gp :bp<CR>
 nnoremap gd :bd<CR>
+nnoremap gi :b#<CR>
 nnoremap <Leader>l <C-^>
 " Easier to open a file
 nnoremap <Leader>e :e<Space>
