@@ -178,7 +178,6 @@ mkdir -p ~/.aws/cli
 ln -s ~/dotfiles/aws/alias ~/.aws/cli/alias
 aws --version
 
-brew tap aws/tap
 brew install aws-sam-cli
 sam --version
 
