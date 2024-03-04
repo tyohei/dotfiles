@@ -222,12 +222,26 @@ if type aws_completer > /dev/null; then
 fi
 
 
+# ============ Google Cloud SDK ============
+if [[ -e $(brew --prefix)/share/google-cloud-sdk/path.zsh.inc ]]; then
+  source "$(brew --prefix)/share/google-cloud-sdk/path.zsh.inc"
+fi
+if [[ -e $(brew --prefix)/share/google-cloud-sdk/completion.zsh.inc ]]; then
+  source "$(brew --prefix)/share/google-cloud-sdk/completion.zsh.inc"
+fi
+
+
 # ============ Visula Studio Code ============
 # https://code.visualstudio.com/docs/setup/mac
 if [[ $(uname) = "Darwin" ]]; then
   export PATH="${PATH}:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 fi
 
+
+# ============ IntelliJ IDEA ============
+if [[ $(uname) = "Darwin" ]]; then
+  export PATH="${PATH}:${HOME}/Library/Application Support/JetBrains/Toolbox/scripts"
+fi
 
 # ============ 1Password CLI ============
 # https://developer.1password.com/docs/cli/get-started#shell-completion
@@ -246,7 +260,36 @@ export PROMPT='[ %* | %n @ %M : %F{3}%~%f ]
 $(__git_ps1 "(%s)")%# '
 
 
-# ============ Prompt ============
-# https://python-poetry.org/docs/master/#enable-tab-completion-for-bash-fish-or-zsh
+# ============ Rye ============
+# https://rye-up.com/guide/installation/
+if [[ -e ${HOME}/.rye/env ]]; then
+  source "${HOME}/.rye/env"
+fi
+if type rye > /dev/null && [[ ! -f ${HOME}/.zfunc/_rye ]]; then
+  mkdir -p ${HOME}/.zfunc
+  rye self completion -s zsh > ${HOME}/.zfunc/_rye
+fi
+
+
+# ============ Zsh Completion ============
 fpath=(~/.zfunc ${fpath})
 autoload -Uz compinit && compinit
+
+
+# ============ asdf ============
+# https://asdf-vm.com/guide/getting-started.html
+if type asdf > /dev/null; then
+  . /opt/homebrew/opt/asdf/libexec/asdf.sh
+fi
+
+
+# ============ Kubernetes ============
+# https://kubernetes.io/docs/reference/kubectl/quick-reference/
+if type kubectl > /dev/null; then
+  source <(kubectl completion zsh)
+fi
+
+# https://cloud.google.com/blog/products/containers-kubernetes/kubectl-auth-changes-in-gke
+if type gke-gcloud-auth-plugin > /dev/null; then
+  export USE_GKE_GCLOUD_AUTH_PLUGIN=True
+fi
