@@ -28,6 +28,19 @@ set iminsert=2                  " automatically turn off IME when moving from in
 set noincsearch
 set nowrapscan
 set hlsearch
+vnoremap * "zy:let @/ = @z<CR>n
+
+
+" ======== Indent ========
+set expandtab
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
+set autoindent
+
+
+" ======== Clipboard ========
+set clipboard+=unnamedplus
 
 
 " ========== Corsor movement ==========
@@ -45,10 +58,6 @@ inoremap <C-a> <Home>
 inoremap <C-e> <End>
 
 
-" ======== Clipboard ========
-set clipboard+=unnamedplus
-
-
 " ======== Keybindings ========
 " Use <Y> as <y>+<$>
 nnoremap Y y$
@@ -62,3 +71,16 @@ nnoremap <C-o> :action Back<CR>
 nnoremap <C-i> :action Forward<CR>
 nnoremap <C-S-o> <C-o>
 nnoremap <C-S-i> <C-i>
+" Easier to open a file
+nnoremap <Leader>e :e<Space>
+
+
+" ======== Open Terminal ========
+nnoremap <C-t> :action ActivateTerminalToolWindow<CR>
+
+
+" ======== Plugins ========
+set NERDTree
+nnoremap <C-e> :NERDTree<CR>
+let g:NERDTreeMapActivateNode = 'l'
+let g:NERDTreeMapCloseDir = 'h'

@@ -285,7 +285,8 @@
                 "^notion\\.id$",
                 "^org\\.chromium\\.Chromium$",
                 "^com\\.microsoft\\.teams$",
-                "^org\\.mozilla\\.firefox$"
+                "^org\\.mozilla\\.firefox$",
+                "^com\\.jetbrains\\.intellij$"
               ]
             }
           ]

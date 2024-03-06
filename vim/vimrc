@@ -51,7 +51,6 @@ if has("autocmd")
   \ endif
 endif
 set wildignore=.o
-vnoremap * "zy:let @/ = @z<CR>n
 if !isdirectory($HOME."/.vim/undodir")
   call mkdir($HOME."/.vim/undodir", "p")
 endif
@@ -67,6 +66,7 @@ set splitbelow
 set noincsearch
 set nowrapscan
 set hlsearch
+vnoremap * "zy:let @/ = @z<CR>n
 
 
 " ======== Replace =======
