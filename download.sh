@@ -20,9 +20,5 @@ curl \
   -o downloads/git-prompt.sh
 
 curl \
-  https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh \
-  -o downloads/installer.sh
-
-curl \
   https://raw.githubusercontent.com/rcaloras/bash-preexec/master/bash-preexec.sh \
   -o downloads/bash-preexec.sh

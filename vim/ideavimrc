@@ -72,7 +72,7 @@ nnoremap <C-i> :action Forward<CR>
 nnoremap <C-S-o> <C-o>
 nnoremap <C-S-i> <C-i>
 " Easier to open a file
-nnoremap <Leader>e :e<Space>
+nnoremap <Leader>e :action SelectIn<CR>
 
 
 " ======== Open Terminal ========
