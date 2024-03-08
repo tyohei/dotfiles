@@ -2,22 +2,22 @@
 " Author: Yohei Tsuji
 " Email: t.t.t.yohei@gmail.com
 "
-"        /\                 \\              __________         ___________
-"      //  \\               # \\           |_        _||       |__        || 
-"    //   |  \\             #   \\           |      ||          //      //
-"  // \   |    \\           #     \\         |      ||        //      //
-" #     \ |      \\         #       #        |      ||      //      //
-" #      \         \\       #       #        |      ||    //      //
-" #       #\         \\     #       #        |      ||  //      //
-" #       #  \         \\   #       #        |      |///      //
-" #       #    \         \\ #       #        |      |/      //_
-" #       #      \         \#       #        |            //__/
-" #       #        \         \      #        |          //---/ -/-__--__--\ -_----\/-----/
-" #       #          \       | \    #        |        //  / /  / /^/ /^/ /  / / ^// /^^
-"  \\     #            \     |     //        |      //   / /  / / / / / /  / /   / /__
-"    \\   #              \   |   //          |____//    '--' '--''--''--' '--'   '-----'
-"      \\ #                \   //
-"        \\                  \/              =============================================>>>
+"
+"   ___________              ________
+"   |         |            /       //
+"   |         |          /       //
+"   |         |        /       //
+"   |         |      /       //
+"   |         |    /       //
+"   |         |  /       //
+"   |         //       //
+"   |         /      //
+"   |              //
+"   |            //
+"   |          //
+"   |        //
+"   |______//
+"
 "
 " ======== Main ========
 let mapleader="\<Space>"
@@ -73,6 +73,10 @@ nnoremap <C-S-o> <C-o>
 nnoremap <C-S-i> <C-i>
 " Easier to open a file
 nnoremap <Leader>e :action SelectIn<CR>
+" Easier to open a usages
+nnoremap <Leader>u :action FindUsages<CR>
+" Easier to open a declarations
+nnoremap <Leader>d :action GotoDeclaration<CR>
 
 
 " ======== Open Terminal ========

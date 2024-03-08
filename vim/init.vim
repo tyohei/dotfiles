@@ -1,3 +1,25 @@
+" init.vim
+" Author: Yohei Tsuji
+" Email: t.t.t.yohei@gmail.com
+"
+"
+"          /\                 \\
+"        //  \\               # \\
+"      //   |  \\             #   \\
+"    // \   |    \\           #     \\
+"   #     \ |      \\         #       #
+"   #      \         \\       #       #
+"   #       #\         \\     #       #
+"   #       #  \         \\   #       #
+"   #       #    \         \\ #       #
+"   #       #      \         \#       #
+"   #       #        \         \      #
+"   #       #          \       | \    #
+"    \\     #            \     |     //
+"      \\   #              \   |   //
+"        \\ #                \   //
+"          \\                  \/
+"
 let s:dotfiles_vim = fnamemodify(expand('<sfile>'), ':h')
 let s:vimrc_path = s:dotfiles_vim . '/vimrc'
 execute ':source ' . s:vimrc_path
