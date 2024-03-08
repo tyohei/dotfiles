@@ -286,7 +286,8 @@
                 "^org\\.chromium\\.Chromium$",
                 "^com\\.microsoft\\.teams$",
                 "^org\\.mozilla\\.firefox$",
-                "^com\\.jetbrains\\.intellij$"
+                "^com\\.jetbrains\\.intellij$",
+                "^com\\.jetbrains\\.goland$"
               ]
             }
           ]
