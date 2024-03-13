@@ -293,3 +293,15 @@ fi
 if type gke-gcloud-auth-plugin > /dev/null; then
   export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 fi
+
+
+# ============ Rye ============
+if type rye > /dev/null; then
+  rye self completion -s zsh > ~/.zfunc/_rye
+fi
+
+
+# ============ Rust ============
+if type cargo > /dev/null; then
+  . "$HOME/.cargo/env"
+fi

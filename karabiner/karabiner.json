@@ -287,7 +287,8 @@
                 "^com\\.microsoft\\.teams$",
                 "^org\\.mozilla\\.firefox$",
                 "^com\\.jetbrains\\.intellij$",
-                "^com\\.jetbrains\\.goland$"
+                "^com\\.jetbrains\\.goland$",
+                "^com\\.jetbrains\\.pycharm$"
               ]
             }
           ]
