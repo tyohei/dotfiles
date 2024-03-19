@@ -112,6 +112,20 @@ endif
 [[plugins]]
 repo = 'vim-airline/vim-airline'
 depends = ['vim-airline-themes']
+hook_add = '''
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+
+let g:airline_symbols.linenr = ' : '
+let g:airline_symbols.maxlinenr = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.colnr = ' : '
+
+" Display all buffers when there's only one tab open
+let g:airline#extensions#tabline#enabled=1
+let g:airline#extensions#branch#enabled=1
+'''
 
 
 [[plugins]]
@@ -121,27 +135,7 @@ hook_add = '''
 let g:airline_powerline_fonts=0
 " Use <solarized> vim-airline theme
 let g:airline_theme='solarized'
-let s:saved_theme = []
-if !exists('$ITERM_PROFILE') || $ITERM_PROFILE == 'Solarized Dark'
-  let g:airline_solarized_bg='dark'
-endif
-
-" https://github.com/vim-airline/vim-airline-themes/issues/180
-let g:airline_theme_patch_func = 'AirlineThemePatch'
-function! AirlineThemePatch(palette)
-    for colors in values(a:palette)
-        if has_key(colors, 'airline_c') && len(s:saved_theme) ==# 0
-            let s:saved_theme = colors.airline_c
-        endif
-        if has_key(colors, 'airline_term')
-            let colors.airline_term = s:saved_theme
-        endif
-    endfor
-endfunction
-
-" Display all buffers when there's only one tab open
-let g:airline#extensions#tabline#enabled=1
-let g:airline#extensions#branch#enabled=1
+let g:airline_solarized_bg='dark'
 
 " Cycle buffer list in Airline's tabline (ignore terminal)
 

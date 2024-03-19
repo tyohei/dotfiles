@@ -18,7 +18,9 @@ brew install \
   tree \
   asdf \
   neovim \
-  awscli
+  awscli \
+  tmux \
+  fzf
 ```
 
 ## Git and GitHub
@@ -136,10 +138,14 @@ echo "source ~/dotfiles/vim/ideavimrc" >> ~/.ideavimrc
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/Shougo/dein-installer.vim/master/installer.sh)"
 ```
 
-## Tmux
+## tmux
+
+* https://github.com/tmux-plugins/tpm
 
 ```sh
 echo "source ~/dotfiles/tmux/tmux.conf" >> ~/.tmux.conf
+
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 ```
 
 ## LaTeXmk

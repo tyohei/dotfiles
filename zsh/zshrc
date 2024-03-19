@@ -11,6 +11,8 @@ DIRCOLORS_FILE="${DOTFILES_HOME}/downloads/dircolors.ansi-dark"
 GITPROMPT_FILE="${DOTFILES_HOME}/downloads/git-prompt.sh"
 # Git completion file
 GITCOMPLETION_FILE="${DOTFILES_HOME}/downloads/git-completion.zsh"
+# AWS Vault completion file
+AWS_VAULT_COMPLETION_FILE="${DOTFILES_HOME}/downloads/aws-vault.zsh"
 
 # Disable locking the terminal when inputing <Ctrl>+<s>.
 stty stop undef
@@ -250,25 +252,10 @@ if type op > /dev/null; then
 fi
 
 
-# ============ Fig ============
-export FIG_WORKFLOWS_KEYBIND="^\\"
-
-
 # ============ Prompt ============
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 export PROMPT='[ %* | %n @ %M : %F{3}%~%f ]
 $(__git_ps1 "(%s)")%# '
-
-
-# ============ Rye ============
-# https://rye-up.com/guide/installation/
-if [[ -e ${HOME}/.rye/env ]]; then
-  source "${HOME}/.rye/env"
-fi
-if type rye > /dev/null && [[ ! -f ${HOME}/.zfunc/_rye ]]; then
-  mkdir -p ${HOME}/.zfunc
-  rye self completion -s zsh > ${HOME}/.zfunc/_rye
-fi
 
 
 # ============ Zsh Completion ============
@@ -296,12 +283,38 @@ fi
 
 
 # ============ Rye ============
-if type rye > /dev/null; then
-  rye self completion -s zsh > ~/.zfunc/_rye
+# https://rye-up.com/guide/installation/
+if [[ -e ${HOME}/.rye/env ]]; then
+  source "${HOME}/.rye/env"
 fi
+if type rye > /dev/null && [[ ! -f ${HOME}/.zfunc/_rye ]]; then
+  mkdir -p ${HOME}/.zfunc
+  rye self completion -s zsh > ${HOME}/.zfunc/_rye
+fi
+
 
 
 # ============ Rust ============
 if type cargo > /dev/null; then
   . "$HOME/.cargo/env"
+fi
+
+
+# ============ AWS Vault ============
+if type aws-vault > /dev/null; then
+  eval "$(cat ${AWS_VAULT_COMPLETION_FILE})"
+fi
+
+
+# ============ fzf ============
+if type fzf > /dev/null; then
+  eval "$(fzf --zsh)"
+
+  # Scheme name: Solarized Dark
+  # Scheme system: base16
+  # Scheme author: Ethan Schoonover (modified by aramisgithub)
+  # Template author: Tinted Theming (https://github.com/tinted-theming)
+
+  export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --color=bg+:#073642,bg:#002b36,spinner:#2aa198,hl:#268bd2 --color=fg:#839496,header:#268bd2,info:#b58900,pointer:#2aa198 --color=marker:#2aa198,fg+:#eee8d5,prompt:#b58900,hl+:#268bd2"
+  export FZF_TMUX_OPTS='-p80%,60%'
 fi
