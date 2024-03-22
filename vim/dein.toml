@@ -125,6 +125,20 @@ let g:airline_symbols.colnr = ' : '
 " Display all buffers when there's only one tab open
 let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#branch#enabled=1
+
+" https://github.com/vim-airline/vim-airline-themes/issues/180
+let s:saved_theme = []
+function! AirlineThemePatch(palette)
+   for colors in values(a:palette)
+       if has_key(colors, 'airline_c') && len(s:saved_theme) ==# 0
+           let s:saved_theme = colors.airline_c
+       endif
+       if has_key(colors, 'airline_term')
+           let colors.airline_term = s:saved_theme
+       endif
+   endfor
+endfunction
+let g:airline_theme_patch_func = 'AirlineThemePatch'
 '''
 
 

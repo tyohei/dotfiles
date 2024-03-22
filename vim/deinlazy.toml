@@ -214,3 +214,10 @@ on_ft = ['swift']
 [[plugins]]
 repo = 'OmniSharp/omnisharp-vim'
 on_ft = ['cs']
+
+
+# Kotlin
+# ================================
+[[plugins]]
+repo = 'udalov/kotlin-vim'
+on_ft = ['kotlin']
