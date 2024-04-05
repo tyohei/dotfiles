@@ -196,3 +196,7 @@ let g:csv_default_delim=','
 
 [[plugins]]
 repo = 'easymotion/vim-easymotion'
+
+
+[[plugins]]
+repo = 'terrastruct/d2-vim'
