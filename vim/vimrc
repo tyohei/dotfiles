@@ -149,6 +149,9 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
+nnoremap <C-w>v :vsplit<CR>
+nnoremap <C-w>V :split<CR>
+
 
 " ======== Keybindings ========
 " Use <j>+<j> as <ESC> 
