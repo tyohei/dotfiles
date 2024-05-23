@@ -20,7 +20,9 @@ brew install \
   neovim \
   awscli \
   tmux \
-  fzf
+  fzf \
+  zsh-syntax-highlighting \
+  font-hack-nerd-font
 ```
 
 ## Git and GitHub
@@ -125,17 +127,21 @@ go install golang.org/x/tools/gopls@latest
 
 ## Vim
 
-* https://github.com/Shougo/dein.vim
+* https://github.com/folke/lazy.nvim
 
 ```sh
 mkdir -p ~/.vim
 mkdir -p ~/.config/nvim/
+mkdir -p ~/.config/nvim/lua/
 
 echo "source ~/dotfiles/vim/vimrc" >> ~/.vimrc
-echo "source ~/dotfiles/vim/init.vim" >> ~/.config/nvim/init.vim
 echo "source ~/dotfiles/vim/ideavimrc" >> ~/.ideavimrc
 
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/Shougo/dein-installer.vim/master/installer.sh)"
+cd ~/.config/nvim
+ln -s ~/dotfiles/vim/init.lua .
+
+cd ~/.config/nvim/lua
+ln -s ~/dotfiles/vim/plugins.lua .
 ```
 
 ## tmux
