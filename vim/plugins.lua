@@ -91,7 +91,7 @@ require('lazy').setup({
       options = {
         theme = 'solarized',
         disabled_filetypes = { 'NvimTree' },
-        section_separators = { left = ' ', right = ' ' },
+        section_separators = { left = '', right = '' },
       },
       sections = {
         lualine_b = {
@@ -107,5 +107,10 @@ require('lazy').setup({
     lazy = false,
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     opts = {},
+  },
+  -- ==== https://github.com/terrastruct/d2-vim
+  {
+    'terrastruct/d2-vim',
+    ft = 'd2',
   },
 })

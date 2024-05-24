@@ -45,12 +45,17 @@ vim.api.nvim_create_autocmd({'BufReadPost'}, {
 -- ====== Serach ======
 vim.opt.wrapscan = false
 vim.opt.hlsearch = true
-vim.api.nvim_set_keymap('v', '*', '"zy:let @/ = @z<CR>n', { noremap = true, silent = true })
+vim.keymap.set('v', '*', '"zy:let @/ = @z<CR>n', { noremap = true, silent = true })
 
 
 -- ====== Parentheses ======
 vim.opt.showmatch = true
 vim.opt.matchtime = 1
+vim.keymap.set('i', '{',  '{}<Left>',   { noremap = true, silent = true })
+vim.keymap.set('i', '[',  '[]<Left>',   { noremap = true, silent = true })
+vim.keymap.set('i', '(',  '()<Left>',   { noremap = true, silent = true })
+vim.keymap.set('i', '\'', '\'\'<Left>', { noremap = true, silent = true })
+vim.keymap.set('i', '"',  '""<Left>',   { noremap = true, silent = true })
 
 
 -- ====== Movements ======
@@ -58,31 +63,31 @@ vim.opt.scrolloff = 1
 vim.opt.sidescrolloff = 16
 
 -- Emcas key binds in insert mode
-vim.api.nvim_set_keymap('i', '<C-b>', '<Left>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('i', '<C-f>', '<Right>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('i', '<C-a>', '<Home>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('i', '<C-e>', '<End>', { noremap = true, silent = true })
+vim.keymap.set('i', '<C-b>', '<Left>', { noremap = true, silent = true })
+vim.keymap.set('i', '<C-f>', '<Right>', { noremap = true, silent = true })
+vim.keymap.set('i', '<C-a>', '<Home>', { noremap = true, silent = true })
+vim.keymap.set('i', '<C-e>', '<End>', { noremap = true, silent = true })
 
 -- Emcas key binds in command mode
-vim.api.nvim_set_keymap('c', '<C-b>', '<Left>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('c', '<C-f>', '<Right>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('c', '<C-a>', '<Home>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('c', '<C-e>', '<End>', { noremap = true, silent = true })
+vim.keymap.set('c', '<C-b>', '<Left>', { noremap = true, silent = true })
+vim.keymap.set('c', '<C-f>', '<Right>', { noremap = true, silent = true })
+vim.keymap.set('c', '<C-a>', '<Home>', { noremap = true, silent = true })
+vim.keymap.set('c', '<C-e>', '<End>', { noremap = true, silent = true })
 
 
 -- ====== Keybindings ======
-vim.api.nvim_set_keymap('', '<Space>', '<Nop>', { noremap = true, silent = true })
+vim.keymap.set('', '<Space>', '<Nop>', { noremap = true, silent = true })
 vim.g.mapleader = vim.keycode('<Space>')
 
-vim.api.nvim_set_keymap('n', 'Y', 'y$', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<C-w>v', ':vsplit<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<C-w>V', ':split<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', 'gn', ':bn<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', 'gp', ':bp<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', 'gd', ':bd<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<Leader>c', ':cd %:p:h<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('t', '<Esc><Esc>', '<C-\\><C-n>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', 'x', '"_x', { noremap = true, silent = true })
+vim.keymap.set('n', 'Y', 'y$', { noremap = true, silent = true })
+vim.keymap.set('n', '<C-w>v', ':vsplit<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<C-w>V', ':split<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', 'gn', ':bn<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', 'gp', ':bp<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', 'gd', ':bd<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<Leader>c', ':cd %:p:h<CR>', { noremap = true, silent = true })
+vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { noremap = true, silent = true })
+vim.keymap.set('n', 'x', '"_x', { noremap = true, silent = true })
 
 
 -- ====== Plugins ======
