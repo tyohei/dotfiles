@@ -23,7 +23,7 @@ require('lazy').setup({
     'maxmx03/solarized.nvim',
     lazy = false,
     priority = 1000,
-    config = function()
+    config = function ()
       vim.o.background = 'dark' -- or 'light'
       vim.cmd.colorscheme('solarized')
     end,
@@ -51,7 +51,7 @@ require('lazy').setup({
         dotfiles = true,
       },
     },
-    config = function()
+    config = function ()
       local function my_on_attach(bufnr)
         local api = require('nvim-tree.api')
         -- default mappings
@@ -112,5 +112,10 @@ require('lazy').setup({
   {
     'terrastruct/d2-vim',
     ft = 'd2',
+  },
+  -- ==== https://github.com/vim-perl/vim-perl
+  {
+    'vim-perl/vim-perl',
+    ft = 'perl',
   },
 })

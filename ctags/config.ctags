@@ -1,0 +1,10 @@
+--exclude=.git
+--exclude=.idea
+
+--languages=perl,python,javascript,typescript,yaml,zsh
+
+--recurse=yes
+
+--sort=yes
+
+--extras=+{reference}

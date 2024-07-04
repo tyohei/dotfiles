@@ -22,7 +22,8 @@ brew install \
   tmux \
   fzf \
   zsh-syntax-highlighting \
-  font-hack-nerd-font
+  font-hack-nerd-font \
+  universal-ctags
 ```
 
 ## Git and GitHub
@@ -142,6 +143,9 @@ ln -s ~/dotfiles/vim/init.lua .
 
 cd ~/.config/nvim/lua
 ln -s ~/dotfiles/vim/plugins.lua .
+
+mkdir ~/.ctags.d
+ln -s ~/dotfiles/ctags/config.ctags ~/.ctags.d/
 ```
 
 ## tmux
