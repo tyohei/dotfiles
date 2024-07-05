@@ -118,4 +118,13 @@ require('lazy').setup({
     'vim-perl/vim-perl',
     ft = 'perl',
   },
+  -- ==== https://github.com/junegunn/fzf.vim
+  {
+    'junegunn/fzf',
+    lazy = false,
+  },
+  {
+    'junegunn/fzf.vim',
+    lazy = false,
+  },
 })
