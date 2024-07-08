@@ -131,7 +131,10 @@ require('lazy').setup({
   {
     'dense-analysis/ale',
     config = function()
+      -- Configuration goes here.
+      local g = vim.g
 
+      g.ale_linters_explicit = 1
     end
   },
 })
