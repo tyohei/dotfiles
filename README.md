@@ -23,7 +23,8 @@ brew install \
   fzf \
   zsh-syntax-highlighting \
   font-hack-nerd-font \
-  universal-ctags
+  universal-ctags \
+  the_silver_searcher
 ```
 
 ## Git and GitHub
@@ -103,6 +104,9 @@ carton --version
 curl -fsSL https://raw.githubusercontent.com/skaji/cpm/main/cpm | perl - install -g App::cpm
 asdf reshim perl
 cpm --version
+
+# For linting Perl from Vim/NeoVim
+cpm install Perl::Tidy
 ```
 
 ## Java

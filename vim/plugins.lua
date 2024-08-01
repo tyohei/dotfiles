@@ -127,4 +127,14 @@ require('lazy').setup({
     'junegunn/fzf.vim',
     lazy = false,
   },
+  -- ==== https://github.com/dense-analysis/ale
+  {
+    'dense-analysis/ale',
+    config = function()
+      -- Configuration goes here.
+      local g = vim.g
+
+      g.ale_linters_explicit = 1
+    end
+  },
 })
