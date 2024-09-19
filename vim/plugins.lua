@@ -135,6 +135,10 @@ require('lazy').setup({
       local g = vim.g
 
       g.ale_linters_explicit = 1
+      g.ale_linters = {
+        perl = { 'perlcritic' },
+        python = { 'ruff' },
+      }
     end
   },
 })
