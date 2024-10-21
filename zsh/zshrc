@@ -320,6 +320,17 @@ if type fzf > /dev/null; then
 fi
 
 
+# ============ JWT ============
+function decode-jwt() {
+  if type jq > /dev/null; then
+    jq -R 'split(".") | .[1] | @base64d | fromjson | .' <<< "$1"
+  else
+    echo "dotfiles: command not found: jq"
+    echo "Install \`jq' using Homebrew"
+  fi
+}
+
+
 # ============ zsh-syntax-highlighting ============
 # https://github.com/zsh-users/zsh-syntax-highlighting
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
