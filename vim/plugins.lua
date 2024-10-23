@@ -38,7 +38,7 @@ require('lazy').setup({
     lazy = false,
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     keys = {
-      { '<C-e>', ':NvimTreeOpen<CR>', noremap = true, silent = false }
+      { '<C-e>', ':NvimTreeToggle<CR>', noremap = true, silent = false }
     },
     opts = {
       view = {

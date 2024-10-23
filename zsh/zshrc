@@ -330,6 +330,11 @@ function decode-jwt() {
   fi
 }
 
+# ============ direnv ============
+if type direnv > /dev/null; then
+  eval "$(direnv hook zsh)"
+fi
+
 
 # ============ zsh-syntax-highlighting ============
 # https://github.com/zsh-users/zsh-syntax-highlighting
